@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    body{
+        background-color: white;
+        margin: 0px;
+        padding: 0px;
+    }
+    .menu{
+        width: 100%;
+        background: #142b47;
+        overflow: auto;
+    }
+    .menu ul{
+        margin: 0px;
+        padding: 0px;
+        list-style:none;
+        line-height: 60px;
+    }
+    .menu li{
+        float: left;
+    }
+    .menu ul li a{
+        background: #142b47;
+        text-decoration: none;
+        width: 130px;
+        text-align: center;
+        color: white;
+        font-size: 15px;
+        font-family: verdana;
+        display: block;
+    }
+    .menu li a:hover{
+     font-size: 33px;
+     color: 3px;
+     opacity: 3px;
+    }
+    .search{
+        margin-top:19px;
+        margin-right: 19px;
+        padding: 0px;
+        float:right;
+        text-align: center;
+
+    }
+    button{
+        float: right;
+        cursor:pointer;
+        background: orange;
+        border-radius: 0px,5px,5px,0px;
+        font-family: sans-serif;
+        border:none;
+        padding: 3px;
+    }
+    </style>
+     </head>
+    <body>
+        
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="{% url 'resto'%}" style="color:orange;">Home</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    <a href="#">Gallery</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+            </ul>
+            <div>
+                    <form class="search" role="search" action="{% url 'search_resto'%}" name="image">
+                        <div class="input-group">
+                            <input class="form-control mr-sm-2" type="search" placeholder="search restaurent location" aria-label="search">
+                            <div class="input-group-btn">
+                            <button type="submit" >Search</button>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </nav>
+    </body>
+</html>
