@@ -5,18 +5,46 @@
 
 <!Doctype html>
 <html>
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  button{
+    height: 100px;
+    width: 200px;
+  }
+</style>
 </head>
 
 
-<body style="margin-top:125px">
+<body>
+  <div class="container" style="margin-top: 15px;margin-left: 10px;">
 
-  <button type="button" class="btn btn-primary">Primary</button>
-  <button type="button" class="btn btn-primary">Primary</button>
-  <button type="button" class="btn btn-primary">Primary</button>
-  <button type="button" class="btn btn-primary">Primary</button>
-  
-  </body>
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-primary">ID Scan</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary">FingerPrint</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary">RFID Scan</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary">Face Recognition</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary">Non Id's</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-primary">Registration</button>
+    </div>
+  </div>
+  </div>
+</body>
+
 </html>
 {%endblock%}
