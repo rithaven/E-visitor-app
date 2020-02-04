@@ -44,3 +44,6 @@ class Image(models.Model):
 
     def save_profile(self):
         self.save()
+# class Idscan(models.Model):
+#     scanId=model.IntegerField(default)
+

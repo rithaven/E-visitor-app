@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content%}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Registration</title>
+  <style>
+    h5 {
+      text-align: center;
+      color: black;
+    }
+
+    body {
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfQiqlAEdd9W8ZixvOgobPFf1h_GRp9gXvbhD8fGuepZEVmUH_');
+      background-attachment: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    hr {
+      font-style: bold;
+      color: black;
+     
+
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+
+    select {
+      width: 467px;
+      background: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elitidunt ut labore et dolore magna aliquaut labore et dolore
+    </h5>
+    <hr style="width: 520px; float: right;margin-right:80px" size="30px">
+    <br><br>
+    <div class="row">
+
+
+      <div class="col">
+        <div style="border-style:groove;padding-top: 10px;padding-left: 5px;width: 500px;">
+          <form>
+
+            Scan your id <input type="text" name="Id scan" style="padding-right:210px;">
+
+          </form>
+        </div>
+        <br>
+        <div style="border-style: groove; padding: 3px;width: 500px;"> 
+          <h5>handnr mdmndbaneirer ruityr cverty</h5>
+        <div style="border-style: groove;padding-top: 10px;padding-left: 10px;width: 487px;">
+          <form>
+            Id Number <input type="integer" name="Id scan" style="padding-right:200px;"><br><br>
+            First Name <input type="text" name="Fist name" style="padding-right:195px;"><br><br>
+            Last Name <input type="text" name="Last name"style="padding-right:195px;"><br><br>
+            Entry Time <input type="time" name="Entry time" style="width: 170px;">&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 200px;"><br><br>
+            Exit Time <input type="time" name="Exit time" style="width: 180px;">&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 200px;">
+          </form>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <h5>gutyir ftuyre tery benet nana</h5>
+        <br>
+        <br>
+        <form>
+          Category <select>
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </select><br><br>
+          Scan Your <input type="number" name="Id scan" style="width:460px">
+        </form>
+        <hr>
+        <h5>
+          Sed ut perspiciatis unde omnis iste natus error sit vusantium </h5>
+        <hr>
+        <form>
+          Primary code <input type="number" name="code" style="width:436px"><br><br><br>
+          Client Name  <input type="text" name="code" style="width:441px">
+        </form>
+        <hr>
+        <h5> we value your Id.perspiciatis unde omnis iste natus error sit
+        </h5>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+{%endblock%}
