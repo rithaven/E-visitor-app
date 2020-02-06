@@ -1,1 +1,1 @@
-web: gunicorn evisitos.wsgi --log-file -
+web: gunicorn evisitos.wsgi 
