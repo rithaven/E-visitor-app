@@ -15,3 +15,18 @@ def add_visitor(request):
 def fingerPrint(request):
 
     return  render(request,'fingerPrint.html')
+def rfidScan(request):
+
+    return  render(request,'RFIDscan.html')
+    
+def faceRecognation(request):
+
+    return  render(request,'faceRecognation.html')   
+
+def ScanEquip(request):
+
+    return  render(request,'ScanEquip.html') 
+
+def RegisterEqipment(request):
+
+    return  render(request,'RegisterEqipment.html') 

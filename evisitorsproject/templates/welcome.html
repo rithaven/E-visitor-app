@@ -22,26 +22,27 @@
 
     <div class="row">
       <div class="col">
-        <a href="add_visitor.html"> <button type="button" class="btn btn-primary">ID Scan</button></a>
+        <a href="{%url 'add_visitor'%}"> <button type="button" class="btn btn-primary">ID Scan</button></a>
       </div>
       <div class="col">
-      <a href="fingerPrint.html"><button type="button" class="btn btn-primary">FingerPrint</button></a>
+      <a href="{%url 'fingerPrint'%}"><button type="button" class="btn btn-primary">FingerPrint</button></a>
       </div>
       <div class="col">
-        <button type="button" class="btn btn-primary">RFID Scan</button>
+       <a href="{%url 'rfidScan'%}"><button type="button" class="btn btn-primary">RFID Scan</button></a>
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col">
-        <button type="button" class="btn btn-primary">Face Recognition</button>
+       <a href="{%url 'faceRecognation'%}"> <button type="button" class="btn btn-primary">Face Recognition</button></a>
       </div>
       <div class="col">
-        <button type="button" class="btn btn-primary">Non Id's</button>
+        <a href="{%url 'ScanEquip'%}">  <button type="button" class="btn btn-primary">ScanEquid</button>
       </div>
       <div class="col">
-        <button type="button" class="btn btn-primary">Registration</button>
+        <a href="{%url 'RegisterEqipment'%}"> <button type="button" class="btn btn-primary">Registration</button></a>
       </div>
+    
     </div>
   </div>
 </body>

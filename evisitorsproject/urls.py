@@ -4,9 +4,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+
     url('^$', views.welcome, name = 'welcome'),
-    # url('',views.add_visitor, name='add_visitor'),
-    url('',views.fingerPrint, name='fingerPrint'),
-#     url('', views.post_list, name='post_list'),
-#     url('post/<int:pk>/', views.post_detail, name='post_detail'),
+    url(r'add_visitor/',views.add_visitor, name='add_visitor'),
+    url(r'fingerPrint/',views.fingerPrint, name='fingerPrint'),
+    url(r'rfidScan/', views.rfidScan, name='rfidScan'),
+    url(r'faceRecognation/', views.faceRecognation, name='faceRecognation'),
+    url(r'ScanEquip/', views.ScanEquip, name='ScanEquip'),
+    url(r'RegisterEqipment/', views.RegisterEqipment, name='RegisterEqipment'),
+    
 ]

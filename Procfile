@@ -1,0 +1,1 @@
+web: gunicorn evisitos.wsgi --log-file -

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Registration</title>
+    <style>
+        h5 {
+            text-align: left;
+            color: black;
+        }
+
+        body {
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfQiqlAEdd9W8ZixvOgobPFf1h_GRp9gXvbhD8fGuepZEVmUH_');
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        hr {
+            font-style: bold;
+            color: black;
+
+
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        select {
+            width: 200px;
+            background: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+       
+        <div class="row">
+    
+    
+          <div class="col">
+           
+              <form>
+    
+                Scan your id <input type="text" name="Id scan" style="width:400px">
+    
+              </form>
+           
+            <br>
+            <br>
+            <br>
+           
+                <p>Id Number</p>
+                <p>First Name</p>
+                <p>Last Name </p>
+                <p>Exit Time </p>
+              </div>
+           &nbsp;&nbsp;
+          <div class="col">
+            <br>
+            <br>
+            <form>
+              Category <select style="width:400px">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+              </select><br><br>
+              Scan Your <input type="number" name="Id scan" style="width:400px">
+            </form>
+           <br>
+           <br>
+              <p>Primary code </p>
+              <p>Client Name </p>
+      </div>          
+</body>
+</html>
+{%endblock%}
