@@ -5,8 +5,8 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Registration</title>
   <style>
     h5 {
@@ -24,7 +24,7 @@
     hr {
       font-style: bold;
       color: black;
-     
+
 
     }
 
@@ -32,48 +32,89 @@
       margin-top: 20px;
     }
 
-    select {
-      width: 467px;
-      background: lightblue;
+    input[type=text],
+
+
+    input[type=submit] {
+      width: 50%;
+      background-color: white;
+      color: black;
+      padding: 7px 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
+
+    input:hover {
+      background-color: #91f0e8;
+    }
+  </style>
+
   </style>
 </head>
 
 <body>
   <div class="container">
-    <h5 style="color: green;">E-VISITORS EQUIPMENTS REGISTRATION
-    </h5>
-    
-    <hr style="width: 520px; float: right;margin-right:80px" size="30px">
-    <br><br>
-    <div class="row">
-        <form action="Register">
-            <div class="container">
-              <h1>Register</h1>
-              <p>Please fill in this form to create an account.</p>
-              <hr>
-          
-              <label for="email"><b>Email</b></label>
-              <input type="text" placeholder="Enter Email" name="email" required>
-          
-              <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" required>
-          
-              <label for="psw-repeat"><b>Repeat Password</b></label>
-              <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-              <hr>
-          
-              <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-              <button type="submit" class="registerbtn" style="background:#80dfff;">Register Equipment</button>
-            </div>
-          
-            <div class="container signin">
-              <p>Already have an account? <a href="#">Sign in</a>.</p>
-            </div>
-          </form>
+    <div class="smart-wrap">
+      <div class="smart-forms smart-container wrap-2">
+        <div class="form-header header-primary">
+          <div style="float:right; margin-top:-20px;margin-right:200px">
+            {% if user.is_authenticated%}
+            <ul style="list-style: none;">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button"
+                  aria-expanded="false">Manage account<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
 
-    </div>
-  </div>
+                  <li>
+                    <a href="/accounts/password/change">Change Password</a>
+                  </li>
+                  <li>
+                    <a href="/logout">Logout</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            {% else %}
+            <li>
+              <a class="btn btn-default" href="/accounts/login">Login</a>
+
+            </li>
+            </ul>
+            {% endif%}
+          </div><br>
+          <br>
+          <h4><i class="fa fa-pencil-square"></i>E-VISITORS EQUIPMENTS REGISTRATION FORM</h4>
+          <!-- end .form-header section --><br>
+          <div style="float: center;">
+            <form mothod="POST">
+
+              {%csrf_token%}
+              {{form}}
+              EQUIP.NUMBER&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="fname"
+                name="firstname" placeholder="Equip. number..">&nbsp;&nbsp;<button style="color: red;"type="reset">Reset</button>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button style="color: blue;"type="submit">Save</button>
+              <br><br>
+              PRODUCT NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="lname"
+                name="lastname" placeholder="product name.."><br><br>
+              EQUIP.ROOM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+                type="text" id="lname" name="lastname" placeholder="Equip . room.."><br><br>
+              PRODUCT NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="lname" name="lastname"
+                placeholder="Product Name.."><br><br>
+              EQUIPMENT ID/CODE <input type="text" id="lname" name="lastname" placeholder="Equip ID/code.."><br><br>
+              EQUIP.LOCATION &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="lname"
+                name="lastname" placeholder="Equip.location.."><br><br>
+            </form>
+          </div>
+
 </body>
+
+</html>
+
+</form>
+</div>
+</body>
+
 </html>
 {%endblock%}

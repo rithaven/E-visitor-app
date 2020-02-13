@@ -11,6 +11,5 @@ urlpatterns = [
     url(r'rfidScan/', views.rfidScan, name='rfidScan'),
     url(r'faceRecognation/', views.faceRecognation, name='faceRecognation'),
     url(r'ScanEquip/', views.ScanEquip, name='ScanEquip'),
-    url(r'RegisterEqipment/', views.RegisterEqipment, name='RegisterEqipment'),
-    
+    url(r'RegisterEqipment/', views.RegisterEqipment, name='RegisterEqipment'), 
 ]

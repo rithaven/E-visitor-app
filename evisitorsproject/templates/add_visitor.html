@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags%}
 {% block content%}
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <title>Registration</title>
   <style>
@@ -50,23 +52,30 @@
 
       <div class="col">
         <div style="border-style:groove;padding-top: 10px;padding-left: 5px;width: 500px;">
-          <form>
-
-            Scan your Id: <input type="text" name="Id scan" style="padding-right:210px;">
+          <form method="POST">
+            {%csrf_token%}
+            {{form|crispy}}
+            Scan your Id: <input type="text" name="Id scan" style="padding-right:150px;" required>
+            <button ype="submit"style="float: right;background: rgb(12, 224, 240);"required>Scan</button>
 
           </form>
         </div>
         <br>
         <div style="border-style: groove; padding: 3px;width: 500px;"> 
+          <form mothod="POST">
           <h5>Inserted Record</h5>
-          <button style="float: right;background: rgb(12, 224, 240);"> Save</button>
+
         <div style="border-style: groove;padding-top: 10px;padding-left: 10px;width: 487px;">
-          <form>
-            Id Number <input type="integer" name="Id scan" style="padding-right:200px;"><br><br>
-            First Name <input type="text" name="Fist name" style="padding-right:195px;"><br><br>
-            Last Name <input type="text" name="Last name"style="padding-right:195px;"><br><br>
-            Entry Time <input type="time" name="Entry time" style="width: 170px;">&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 200px;"><br><br>
-            Exit Time <input type="time" name="Exit time" style="width: 180px;">&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 200px;">
+           
+            {%csrf_token%}
+            {{form|crispy}}
+            Id Number <input type="integer" name="Id scan" style="padding-right:170px;" required><br><br>
+            First Name <input type="text" name="Fist name" style="padding-right:170px;" required><br><br>
+            Last Name <input type="text" name="Last name"style="padding-right:170px;" required><br><br>
+            Entry Time <input type="time" name="Entry time" style="width: 170px;" required>&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 200px;"><br><br>
+            Exit Time <input type="time" name="Exit time" style="width: 180px;" required>&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 200px;">
+            <button ype="submit"style="float: right;background: rgb(12, 224, 240);"required> Save</button>
+
           </form>
           </div>
         </div>
@@ -77,22 +86,29 @@
         <br>
         <br>
 
-        <form>
-          Category: <select style="width:435px">
+        <form method="POST">
+          {%csrf_token%}
+            {{form|crispy}}
+          Category: <select style="width:435px" required>
             <option value="volvo">POSITICO BGH</option>
             <option value="saab">Saab</option>
             <option value="mercedes">Mercedes</option>
             <option value="audi">Audi</option>
           </select><br><br>
-          Scan Your property: <input type="number" name="Id scan" style="width:367px">
+          Scan Your property: <input type="number" name="Id scan" style="width:367px" required>
+          <button ype="submit"style="float: right;background: rgb(12, 224, 240);"required>Scan</button>
         </form>
       </div>
         <h5>
           Registered Property </h5>
           <div style="border-style: groove;padding-top: 10px;padding-bottom: 10px;padding-left: 10px;">
-        <form>
-          Property Code: <input type="number" name="code" style="width: 400px"><br><br><br>
-          Property Name: <input type="text" name="code" style="width:400px">
+        <form method="POST">
+          {%csrf_token%}
+            {{form|crispy}}
+          Property Code: <input type="number" name="code" style="width: 400px"required><br><br><br>
+          Property Name: <input type="text" name="code" style="width:400px"required>
+          <button ype="submit"style="float: right;background: rgb(12, 224, 240);"> Save</button>
+
         </form>
         </div>
         <br>

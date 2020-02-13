@@ -1,11 +1,21 @@
 from django import forms
 from django.forms import ModelForm
-from models import visitors
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout,Submit
+# from django.forms import extras
+# from .models import Snippet
 
-# class VisitorsForm(forms.ModelForm):
+class idScanForm(forms.ModelForm):
 
+      Idnumber=forms.CharField(max_length=30)
+      FirstName=forms.CharField(max_length=30)
+      LastName=forms.CharField(max_length=30)
+      EntryTime=forms.DateField()
+      ExitTime=forms.DateField()
+      category=forms.CharField(max_length=30)
+      propertycode=forms.CharField(max_length=30)
+      propertyname=forms.CharField(max_length=30)
 
-#      required_css_class='required'
-#         class Meta: 
-#             model= visitor
-#             fields='all'
+      # class Meta:
+      #       model= Idscan
+      #       fields=('Idnumbe','FirstName','LastName','EntryTime','ExitTime','category','propertycode','propertyname')
