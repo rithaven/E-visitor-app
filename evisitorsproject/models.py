@@ -2,8 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django import forms
 from django.db import models
-# from django.forms import extras
-# from tinymce.models import HTMLField
+
 
 # Create your models here.
 class Idscan(models.Model):
