@@ -54,7 +54,7 @@
         <div style="border-style:groove;padding-top: 10px;padding-left: 5px;width: 500px;">
           <form method="POST">
             {%csrf_token%}
-            {{form|crispy}}
+            {{form}
             Scan your Id: <input type="text" name="Id scan" style="padding-right:150px;" required>
             <button ype="submit"style="float: right;background: rgb(12, 224, 240);"required>Scan</button>
 
@@ -88,7 +88,7 @@
 
         <form method="POST">
           {%csrf_token%}
-            {{form|crispy}}
+            {{form}}
           Category: <select style="width:435px" required>
             <option value="volvo">POSITICO BGH</option>
             <option value="saab">Saab</option>
@@ -104,7 +104,7 @@
           <div style="border-style: groove;padding-top: 10px;padding-bottom: 10px;padding-left: 10px;">
         <form method="POST">
           {%csrf_token%}
-            {{form|crispy}}
+            {{form}}
           Property Code: <input type="number" name="code" style="width: 400px"required><br><br><br>
           Property Name: <input type="text" name="code" style="width:400px"required>
           <button ype="submit"style="float: right;background: rgb(12, 224, 240);"> Save</button>
