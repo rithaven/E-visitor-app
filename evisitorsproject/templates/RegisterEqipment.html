@@ -73,14 +73,6 @@
                   <li>
                     <a href="/logout">Logout</a>
                   </li>
-                  <form  action="/accounts/login/" method="post">
-                    {% csrf_token %}{% bootstrap_form form%}
-                  <div class="panel-heading">
-                    <p class=" ‎_g9ean pull-left">Don't have an account?</p>
-                    <a href="{% url 'registration_register'%}">  Sign Up</a>
-                  </div>
-                  <input type="hidden" name="next" value="{{next}}">
-                  </form>
                 </ul>
               </li>
             </ul>

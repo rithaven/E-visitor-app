@@ -17,32 +17,19 @@ def welcome(request):
     return render(request,'welcome.html')
 
 def add_visitor(request):
-    if request.method=='POST':
-        form=idScanForm(request.POST)
-        if form.is_valid():
-            Idnumber =form.cleaned_data['Idnumber']
-            FirstName =form.cleaned_data['FirstName']
-            LastName =form.cleaned_data['LastName']
-            EntryTime =form.cleaned_data['EntryTime']
-            ExitTime =form.cleaned_data['ExitTime']
-            category=forms.cleaned_data['category']
-            propertycode=forms.cleaned_data['category']
-            propertyname=forms.cleaned_data['category']
-    print("VALID")
-    # form=idScanForm()
+
+    form=idScanForm(request.POST)
+    if form.is_valid():
+        add_visitor=form.save(commit=False)
+        add_visitor.user=request.user
+        add_visitor.save()
+        # text=form.clear_data['add_visitor']
+        form=idScanForm()
+    
+        return redirect('welcome')
+    # args={'form':form,'text':text}
+   
     return  render(request,'add_visitor.html')
-# def Snippet_details(request):
-#     if request.method=='POST':
-#         form=SnippetForm(request.POST)
-#         if form.is_valid():
-#             Idnumber =form.cleaned_data['Idnumber']
-#             FirstName =form.cleaned_data['FirstName']
-#             LastName =form.cleaned_data['LastName']
-#             EntryTime =form.cleaned_data['EntryTime']
-#             ExitTime =form.cleaned_data['ExitTime']
-#     print("VALID")
-#     form=SnippetForm()
-#     return  render(request,'add_visitor.html',{'form':form})
 
 def fingerPrint(request):
 

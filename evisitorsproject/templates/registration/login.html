@@ -40,14 +40,18 @@
             <p style="text-align:center;font-family: 'Lobster', cursive;font-size: 40px">Equipment registration
             <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
             </p>
-            <p>Sin in  to registor Equipment</p>
+            <p>Sign in  to registor Equipment</p>
           <form  action="/accounts/login/" method="post">
             {% csrf_token %}{% bootstrap_form form%}
 
             <div class="form-group">
               <input type="submit" class="btn btn-primary btn-lg btn-block" value="Login">
             </div>
-           
+            <div class="panel-heading">
+              <p class=" ‎_g9ean pull-left">Don't have an account?</p>
+              <a href="{% url 'registration_register'%}">  Sign Up</a>
+            </div>
+            <input type="hidden" name="next" value="{{next}}">
           </form>
           </div>
       </div>

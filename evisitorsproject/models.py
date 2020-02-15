@@ -14,7 +14,5 @@ class Idscan(models.Model):
       category=forms.CharField(max_length=30)
       propertycode=forms.CharField(max_length=30)
       propertyname=forms.CharField(max_length=30)
-      
-      def __str__(self):
-        return self.Idnumber
-               
+      user=models.ForeignKey(User)
+     

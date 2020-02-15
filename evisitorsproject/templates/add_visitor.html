@@ -53,8 +53,8 @@
         <div style="border-style:groove;padding-top: 10px;padding-left: 5px;width: 500px;">
           <form method="POST">
             {%csrf_token%}
-            {{form}
-            Scan your Id: <input type="text" name="Id scan" style="padding-right:150px;" required>
+              {{form}}
+            Scan your Id: <input type="text" name="Idscan" style="padding-right:150px;" required>
             <button ype="submit"style="float: right;background: rgb(12, 224, 240);"required>Scan</button>
 
           </form>
@@ -68,14 +68,14 @@
            
             {%csrf_token%}
             {{form}}
-            Id Number <input type="integer" name="Id scan" style="padding-right:170px;" required><br><br>
-            First Name <input type="text" name="Fist name" style="padding-right:170px;" required><br><br>
-            Last Name <input type="text" name="Last name"style="padding-right:170px;" required><br><br>
-            Entry Time <input type="time" name="Entry time" style="width: 170px;" required>&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 200px;"><br><br>
-            Exit Time <input type="time" name="Exit time" style="width: 180px;" required>&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 200px;">
-            <button ype="submit"style="float: right;background: rgb(12, 224, 240);"required> Save</button>
+            Id Number <input type="integer" name="Idscan" style="padding-right:170px;" required><br><br>
+            First Name <input type="text" name="Fistname" style="padding-right:170px;" required><br><br>
+            Last Name <input type="text" name="Lastname"style="padding-right:170px;" required><br><br>
+            Entry Time <input type="time" name="Entrytime" style="width: 170px;" required>&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 200px;"><br><br>
+            Exit Time <input type="time" name="Exittime" style="width: 180px;" required>&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 200px;">
+            <!-- <button ype="submit"style="float: right;background: rgb(12, 224, 240);"required> Save</button> -->
 
-          </form>
+          
           </div>
         </div>
       </div>
@@ -85,27 +85,22 @@
         <br>
         <br>
 
-        <form method="POST">
-          {%csrf_token%}
-            {{form}}
           Category: <select style="width:435px" required>
             <option value="volvo">POSITICO BGH</option>
             <option value="saab">Saab</option>
             <option value="mercedes">Mercedes</option>
             <option value="audi">Audi</option>
           </select><br><br>
-          Scan Your property: <input type="number" name="Id scan" style="width:367px" required>
-          <button ype="submit"style="float: right;background: rgb(12, 224, 240);"required>Scan</button>
-        </form>
+          Scan Your property: <input type="number" name="Idscan" style="width:367px" required>
+          <!-- <button ype="submit"style="float: right;background: rgb(12, 224, 240);"required>Scan</button> -->
+        
       </div>
         <h5>
           Registered Property </h5>
           <div style="border-style: groove;padding-top: 10px;padding-bottom: 10px;padding-left: 10px;">
-        <form method="POST">
-          {%csrf_token%}
-            {{form}}
-          Property Code: <input type="number" name="code" style="width: 400px"required><br><br><br>
-          Property Name: <input type="text" name="code" style="width:400px"required>
+       
+          Property Code: <input type="number" name="pro.code" style="width: 400px"required><br><br><br>
+          Property Name: <input type="text" name="pro.name" style="width:400px"required>
           <button ype="submit"style="float: right;background: rgb(12, 224, 240);"> Save</button>
 
         </form>

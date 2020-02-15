@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Idscan
 
 # from django.forms import extras
 # from .models import Snippet
@@ -16,6 +17,6 @@ class idScanForm(forms.ModelForm):
       propertycode=forms.CharField(max_length=30)
       propertyname=forms.CharField(max_length=30)
 
-      # class Meta:
-      #       model= Idscan
-      #       fields=('Idnumbe','FirstName','LastName','EntryTime','ExitTime','category','propertycode','propertyname')
+      class Meta:
+            model= Idscan
+            fields=('Idnumber','FirstName','LastName','EntryTime','ExitTime','category','propertycode','propertyname')
