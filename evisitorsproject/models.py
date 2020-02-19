@@ -15,4 +15,3 @@ class Idscan(models.Model):
       propertycode=forms.CharField(max_length=30)
       propertyname=forms.CharField(max_length=30)
       user=models.ForeignKey(User)
-     
