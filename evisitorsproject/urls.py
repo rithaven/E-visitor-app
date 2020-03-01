@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'faceRecognation/', views.faceRecognation, name='faceRecognation'),
     url(r'ScanEquip/', views.ScanEquip, name='ScanEquip'),
     url(r'RegisterEqipment/', views.RegisterEqipment, name='RegisterEqipment'), 
+    url(r'borcodeRead/', views.borcodeRead, name='borcodeRead')
 ]
