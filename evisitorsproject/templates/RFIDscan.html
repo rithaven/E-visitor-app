@@ -42,49 +42,54 @@
 
 <body>
   <div class="container">
+    <div style="border-style:groove;padding-top: 10px;padding-left: 5px;width: 900px; height: 400px;">
 
-    <div class="row">
+      <div class="row">
 
 
-      <div class="col">
+        <div class="col">
 
-        <form>
+          <form>
 
-          Scan your Card: <input type="text" name="Id scan" style="width:400px"><a href="{% url 'borcodeRead'%}" style="text-decoration: none;"><strong style="color: white;">Scan</strong>&nbsp;<button type="button" style="width: 20;height: 20;"> <img
-            src="https://cdn.mikroe.com/knowlegebase/uploads/2016/11/04175029/rfid.jpg" style="height: 50px; width: 50px;">
+            Scan your Card: <input type="text" name="Id scan" style="width:369px">
+            <a href="{% url 'borcodeRead'%}"><button type="button" style="width: 40;height: 40;"><img
+                  src="https://cdn.mikroe.com/knowlegebase/uploads/2016/11/04175029/rfid.jpg"
+                  style="height: 30px; width: 40px;">
+              </button></a>
+          </form>
 
-        </form>
-
-        <br>
-        <br>
-        <br>
-
-        <p>Firt Name:</p>
-        <p>Last Name:</p>
-        <p>Gender: </p>
-        <p>Time in: </p>
-        <p>Time out:</p>
-      </div>
-      &nbsp;&nbsp;
-      <div class="col">
-        <br>
-        <br>
-        <form>
-          Your property: <select style="width:400px">
-            <option value="volvo">Item 1</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-          </select><br><br>
-          Scan Property: <input type="number" name="Id scan" style="width:400px"><br><br><br>
-          <p>Property Name:</p>
-          <p>Code:</p>
           <br>
           <br>
           <br>
-          <input type="submit">
-        </form>
+
+          <p>Firt Name:</p>
+          <p>Last Name:</p>
+          <p>Gender: </p>
+          <p>Time in: </p>
+          <p>Time out:</p>
+        </div>
+        &nbsp;&nbsp;
+        <div class="col">
+          <br>
+          <br>
+          <form>
+            Your property: <select style="width:400px">
+              <option value="volvo">Item 1</option>
+              <option value="saab">Saab</option>
+              <option value="mercedes">Mercedes</option>
+              <option value="audi">Audi</option>
+            </select><br><br>
+            Scan Property: <input type="number" name="Id scan" style="width:400px"><br><br><br>
+            <p>Property Name:</p>
+            <p>Code:</p>
+            <br>
+            <br>
+            <br>
+            <button type="button" name="save">Save</button>
+          </form>
+        </div>
       </div>
 </body>
+
 </html>
 {%endblock%}
