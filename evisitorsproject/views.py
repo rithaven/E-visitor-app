@@ -12,7 +12,7 @@ from imutils.video import VideoStream
 from pyzbar import pyzbar
 import argparse
 import datetime
-import imutils
+# import imutils
 import time
 import cv2
 
