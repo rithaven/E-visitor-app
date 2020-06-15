@@ -16,7 +16,7 @@ class Idscan(models.Model):
       property=models.CharField(max_length=300,null=True)
       property_code=models.CharField(max_length=300,null=True)
       Institution_name=models.CharField(max_length=1000,null=True)
-      pub_date = models.DateTimeField(auto_now_add=True,null=True)
+      date = models.DateTimeField(auto_now_add=True,null=True)
 
 
 
