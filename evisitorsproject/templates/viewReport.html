@@ -27,7 +27,7 @@
     View Report Portal</h1>
   <div class="container">
     <form style="margin-left:500px" method="GET" role="search"action="{% url 'search_results' %}">
-      <input type="search" placeholder="Search by ID">
+      <input type="search" placeholder="Search by Date">
     </form>
     <div class="row" style="margin-top: 3%; margin-left: 3%">
 
@@ -44,7 +44,7 @@
         <tbody>
           {%for repos in viewReport%}
           <tr>
-            <td>{{repos.Id_number}},{{repos.First_name}}{{repos.Last_name}}, {{repos.place_Of_Isue}},
+            <td>{{repos.Id_number}},{{repos.First_name}}{{repos.Last_name}}, {{repos.place_Of_Isue}}
               </td>
             <td>   {{repos.Institution_name}},{{repos.property}},{{repos.property_code}}</td>
             <td>{{repos.date}}</td>
