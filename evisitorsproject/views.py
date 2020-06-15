@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 # from imutils.video import VideoStream
 # from pyzbar import pyzbar
 import argparse
-import datetime as dt
+from datetime import timedelta
 # import imutils
 import time
 
@@ -27,7 +27,7 @@ def welcome(request):
     return render(request,'welcome.html')
 
 def add_visitor(request):
-    date = dt.date.today()
+    d= timedelta(microseconds=-1)
     if request.method=="POST":
         form=idScanForm(request.POST)
         if form.is_valid():
@@ -38,6 +38,7 @@ def add_visitor(request):
     
     return  render(request,'add_visitor.html',{'form':form,'date':date})
 
+     
 def edit_visitor(request, id=None):
     item= get_object_or_404(Idscan,id=id)
     form=idScanForm(request.GET or None, instance=item) 
@@ -45,7 +46,7 @@ def edit_visitor(request, id=None):
        form.save()
        return redirect('/viewReport/' +str(item.id)+'/')
     return  render(request,'add_visitor.html',{'form':form})
-    
+
 @login_required(login_url='/accounts/login/')
 def viewReport(request):
     viewReport=Idscan.objects.all()

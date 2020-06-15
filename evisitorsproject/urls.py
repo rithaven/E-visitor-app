@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^add_visitor/',views.add_visitor, name='add_visitor'),
     url(r'^edit/visitor/(?P<id>\d+)/$',views.edit_visitor, name='edit_visitor'),
     url(r'viewReport/',views.viewReport, name='viewReport'),
+    # url(r'today/',views.entryDate,name='entryDate'),
     url(r'fingerPrint/',views.fingerPrint, name='fingerPrint'),
     url(r'^search/', views.search_results, name='search_results'),
     url(r'rfidScan/', views.rfidScan, name='rfidScan'),
