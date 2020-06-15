@@ -36,7 +36,7 @@ def add_visitor(request):
     else:
         form=idScanForm()
     
-    return  render(request,'add_visitor.html',{'form':form,'date':date})
+    return  render(request,'add_visitor.html',{'form':form})
 
      
 def edit_visitor(request, id=None):
