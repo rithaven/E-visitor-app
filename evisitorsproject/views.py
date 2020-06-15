@@ -2,41 +2,98 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
+# from django.views.generic import ListView
 from .forms import idScanForm
+from .models import Idscan
 from django.conf import settings
 from . import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-# from imutils.video import VideoStream
-# from pyzbar import pyzbar
+from imutils.video import VideoStream
+from pyzbar import pyzbar
 import argparse
-# import datetime
-# # import imutils
-# import time
-# import cv2
+import datetime as dt
+import imutils
+import time
+import cv2
 
-
+continue_reading = True
 # Create your views here.
 def welcome(request):
-  
+
+     
+    
     return render(request,'welcome.html')
 
 def add_visitor(request):
-    
-    form=idScanForm(request.POST)
-    if form.is_valid():
-        add_visitor=form.save(commit=False)
-        add_visitor.user=request.user
-        add_visitor.save()
-        # text=form.clear_data['add_visitor']
+    date = dt.date.today()
+    if request.method=="POST":
+        form=idScanForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/viewreport/')
+    else:
         form=idScanForm()
     
-        return redirect('welcome')
-    # args={'form':form,'text':text}
-   
-    return  render(request,'add_visitor.html')
+    return  render(request,'add_visitor.html',{'form':form,'date':date})
 
+def edit_visitor(request, id=None):
+    item= get_object_or_404(Idscan,id=id)
+    form=idScanForm(request.GET or None, instance=item) 
+    if form.is_valid():
+       form.save()
+       return redirect('/viewReport/' +str(item.id)+'/')
+    return  render(request,'add_visitor.html',{'form':form})
+
+def viewReport(request):
+    viewReport=Idscan.objects.all()
+    return render (request, 'viewReport.html',{'viewReport':viewReport})
+
+def search_results(request):
+    if 'Id_number' in request.GET and request.GET["Id_number"]:
+        search_term = request.GET.get("Id_number")
+        searched_visitors = Idscan.search_by_Id(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"visitors": searched_visitors})
+
+    else:
+        message = "You haven't searched for any term"
+    return render(request, 'search.html',{"message":message})
+
+    # indanga=request.POST.getlist("indanga")
+    # Idsican=request.POST.getlist("Idsican")
+    # Fistname=request.POST.getlist("Fistname")
+    # Lastname=request.POST.getlist("Lastname")
+    # placeOfIsue=request.POST.getlist("placeOfIsue")
+    
+    # category=request.POST.getlist("category")
+    # propert=request.POST.getlist("propert")
+    # propertycode=request.POST.getlist("propertycode")
+    # propertyname=request.POST.getlist("propertyname")
+    
+    # print(indanga,Idsican,Fistname,Lastname,placeOfIsue,category,propert,propertycode,propertyname)
+    
+    # visitorr=VisitorInfo(indanga=indanga,Idsican=Idscan,Fistname=Fistname,Lastname=Lastname,Entrytime=Entrytime,Exittime=Exittime,category=category,propert=propert,propertycode=propertycode,propertyname=propertyname)
+    # visitorr.save()
+
+        
+
+    # return redirect('fingerPrint')
+        # args={'form':form,'text':text}
+  
+# def visitor_delete_view(request,id):
+#     obj=get_object_or_404(Idscan, id=id)
+#     if request.method=="POST":
+#         obj.delete()
+#         return redirect('/viewReport/')
+#     context={
+#         "object":obj
+#     }
+   
+#     return render(request,"viewRepoert.html",context)
+    
 def fingerPrint(request):
 
     return  render(request,'fingerPrint.html')
@@ -51,10 +108,12 @@ def faceRecognation(request):
 def ScanEquip(request):
 
     return  render(request,'ScanEquip.html') 
+
 @login_required(login_url='/accounts/login/')
 def RegisterEqipment(request):
 
     return  render(request,'RegisterEqipment.html') 
+    
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -123,4 +182,8 @@ def borcodeRead(request):
             csv.close()
             cv2.destroyAllWindows()
             return redirect('welcome')
+            
     return render('request','barcodeRead.html')    
+
+ 
+

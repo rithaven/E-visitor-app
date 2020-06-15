@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content%}
+{% load bootstrap4 %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 
@@ -8,50 +10,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Registration</title>
-  <style>
-    h5 {
-      text-align: center;
-      color: black;
-    }
-
-    body {
-      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfQiqlAEdd9W8ZixvOgobPFf1h_GRp9gXvbhD8fGuepZEVmUH_');
-      background-attachment: fixed;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    hr {
-      font-style: bold;
-      color: black;
-
-
-    }
-
-    .container {
-      margin-top: 20px;
-    }
-
-    input[type=text],
-
-
-    input[type=submit] {
-      width: 50%;
-      background-color: white;
-      color: black;
-      padding: 7px 10px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    input:hover {
-      background-color: #91f0e8;
-    }
-  </style>
-
-  </style>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+  {% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/registor.css' %}">
+  {%endblock %}
 </head>
 
 <body>
@@ -61,17 +24,17 @@
         <div class="form-header header-primary">
           <div style="float:right; margin-top:-20px;margin-right:200px">
             {% if user.is_authenticated%}
-            <ul style="list-style: none;">
+            <ul style="list-style: none; background-color: bisque;">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button"
                   aria-expanded="false">Manage account<span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
+                <ul class="dropdown-menu" role="menu" style="background-color: bisque; border-radius: 20%;">
 
-                  <li>
-                    <a href="{%url 'welcome'%}">Home</a>
+                  <li style=" padding-left:5px">
+                    <a href="{%url 'viewReport'%}">  View Report</a>
                   </li>
-                  <li>
-                    <a href="/logout">Logout</a>
+                  <li style=" padding-left:5px">
+                    <a href="/logout">   Logout</a>
                   </li>
                 </ul>
               </li>
@@ -87,15 +50,18 @@
           <br>
           <h4><i class="fa fa-pencil-square"></i>E-VISITORS EQUIPMENTS REGISTRATION FORM</h4>
           <!-- end .form-header section --><br>
-          <div style="float: center;">
-            <form mothod="POST">
+          <div style="border-style:groove;padding-top: 10px;padding-left:2px;padding-right: 10px;width: 800px;margin-left: 200px;">
 
+          <div class="container">
+
+            <form mothod="POST" style=" margin-left:300px">
+              <p>{{add_visitor.indanga}}</p>
               {%csrf_token%}
               {{form}}
               EQUIP.NUMBER&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="fname"
-                name="firstname" placeholder="Equip. number..">&nbsp;&nbsp;<button style="color: red;"
-                type="reset">Reset</button>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button style="color: blue;" type="submit">Save</button>
+                name="firstname" placeholder="Equip. number.."><button 
+                type="reset" class="c">Reset</button>
+              <button style="color: blue;" class="b" type="submit">Save</button>
               <br><br>
               PRODUCT NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="lname"
                 name="lastname" placeholder="product name.."><br><br>
@@ -108,12 +74,12 @@
                 name="lastname" placeholder="Equip.location.."><br><br>
             </form>
           </div>
+          </div>
+          
         </div>
       </div>
     </div>
   </div>
-
 </body>
-
 </html>
 {%endblock%}

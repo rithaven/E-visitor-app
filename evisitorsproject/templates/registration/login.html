@@ -9,58 +9,60 @@
 
   <title>Registration</title>
   <style>
-    
     body {
       background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfQiqlAEdd9W8ZixvOgobPFf1h_GRp9gXvbhD8fGuepZEVmUH_');
       background-attachment: fixed;
       background-size: cover;
       background-repeat: no-repeat;
     }
-    </style>
-    </head>
-    <body>
-<div class="container">
+  </style>
+</head>
 
-  <div style="display: flex;justify-content: center;margin-top: 2%;width: 108%">
-    
-    <!-- <div style="width: 385px;height: 100px;margin-top: 6%;">
+<body>
+  <div class="container">
+
+    <div style="display: flex;justify-content: center;margin-top: 2%;width: 108%">
+
+      <!-- <div style="width: 385px;height: 100px;margin-top: 6%;">
       <img src="../../static/images/i.png" alt="instagram login phone">
     </div> -->
 
-   <div>
-      {% if form.errors %}
+      <div>
+        {% if form.errors %}
         <p> Password or Username is incorrect </p>
-      {% endif %}
-      <div class="panel-body">
+        {% endif %}
+        <div class="panel-body">
 
-        <!-- <div class="panel-heading">
+          <!-- <div class="panel-heading">
           <h3 class="text-center">Sign In</h3>
         </div> -->
-        <div class="panel-body"style="background:white;box-shadow: 0 4px 8px 0 rgba(0,0, 0, 0.2);height: 500px;padding-left:100px;padding-right:100px;">
+          <div class="panel-body"
+            style="background:white;box-shadow: 0 4px 8px 0 rgba(0,0, 0, 0.2);height: 500px;padding-left:100px;padding-right:100px;">
             <p style="text-align:center;font-family: 'Lobster', cursive;font-size: 40px">Equipment registration
-            <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+              <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
             </p>
-            <p>Sign in  to registor Equipment</p>
-          <form  action="/accounts/login/" method="post">
-            {% csrf_token %}{% bootstrap_form form%}
+            <p>Sign in to registor Equipment</p>
+            <form action="/accounts/login/" method="post">
+              {% csrf_token %}{% bootstrap_form form%}
 
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-lg btn-block" value="Login">
-            </div>
-            <div class="panel-heading">
-              <p class=" ‎_g9ean pull-left">Don't have an account?</p>
-              <a href="{% url 'registration_register'%}">  Sign Up</a>
-            </div>
-            <input type="hidden" name="next" value="{{next}}">
-          </form>
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Login">
+              </div>
+              <div class="panel-heading">
+                <p class=" ‎_g9ean pull-left">Don't have an account?</p>
+                <a href="{% url 'registration_register'%}"> Sign Up</a>
+              </div>
+              <input type="hidden" name="next" value="{{next}}">
+            </form>
           </div>
-      </div>
+        </div>
       </div>
 
     </div>
     <!-- empty div -->
     <div class="col-md-4"></div>
   </div>
-  </body>
-  </html>
+</body>
+
+</html>
 {% endblock %}

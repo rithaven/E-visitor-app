@@ -9,22 +9,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <title>Registration</title>
-  <style>
-    h5 {
-      text-align: center;
-      color: black;
-    }
-    .container {
-      margin-top: 20px;
-    }
-
-    body {
-      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfQiqlAEdd9W8ZixvOgobPFf1h_GRp9gXvbhD8fGuepZEVmUH_');
-      background-attachment: fixed;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-  </style>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/registor.css' %}"> 
+  {%endblock %}
 </head>
 
 <body>

@@ -1,6 +1,7 @@
 {%extends "base.html"%}
 {% load bootstrap4 %}
 {% block content %}
+{% load staticfiles %}
 {{ block.super}}
 
 <!Doctype html>
@@ -9,10 +10,17 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
   <style>
     button {
       height: 100px;
       width: 200px;
+    }
+    body{
+      background-image: url(https://images.squarespace-cdn.com/content/v1/5866b54dff7c505afd1f6804/1521948491379-XT0Z8OR99E032ED1OCPP/ke17ZwdGBToddI8pDm48kPJXHKy2-mnvrsdpGQjlhod7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QHyNOqBUUEtDDsRWrJLTmihaE5rlzFBImxTetd_yW5btdZx37rH5fuWDtePBPDaHF5LxdCVHkNEqSYPsUQCdT/White+Block+Background.jpg?format=1500w);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
   </style>
 </head>

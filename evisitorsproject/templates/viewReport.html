@@ -1,0 +1,58 @@
+{% extends "base.html"%}
+{% block content %}
+{{block.super}}
+{% load bootstrap4 %}
+{% load staticfiles %}
+
+<style>
+</style>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>View Report</title>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+
+
+  {% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/viewReport.css' %}">
+  {%endblock %}
+</head>
+
+<body>
+  <h1 class='text-center'
+    style="margin-bottom:5%;margin-top:3%; color: rgb(219, 223, 235);font-family: 'Playfair Display', serif;" id="text">
+    View Report Portal</h1>
+  <div class="container">
+    <form style="margin-left:500px" method="GET" role="search"action="{% url 'search_results' %}">
+      <input type="search" placeholder="Search by ID">
+    </form>
+    <div class="row" style="margin-top: 3%; margin-left: 3%">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th scope="col">Visitor Identifications</th>
+            <th scope="col">Entry Date</th>
+            <th scope="col">Exit Date</th>
+            <th scope="col">view</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for repos in viewReport%}
+          <tr>
+            <td>{{repos.Id_number}},{{repos.First_name}}{{repos.Last_name}}, {{repos.place_Of_Isue}},
+              {{repos.property}}</td>
+            <td>{{repos.property_code}}</td>
+            <td>{{repos.Institution_name}},{{repos.date}}</td>
+<td><button type="menu">Details</button></td>
+          {%endfor%}
+        </tbody>
+      </table>
+</body>
+
+</html>
+{%endblock%}

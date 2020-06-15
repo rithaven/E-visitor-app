@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content%}
+{% load bootstrap4 %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 
@@ -10,12 +12,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
 
     <link rel="icon" href="Favicon.png">
 
@@ -24,6 +25,7 @@
 
     <title>Scaned Eqipment</title>
 
+    <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
 
     <style>
         body {

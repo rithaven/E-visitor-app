@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content%}
+{% load bootstrap4 %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 
@@ -7,8 +9,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+  
   <title>Registration</title>
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
   <style>
     h5 {
       text-align: left;
@@ -49,7 +52,7 @@
 
 
         <div class="col">
-      
+
           <form>
 
             Scan your Card: <input type="text" name="Id scan" style="width:369px">
@@ -62,12 +65,16 @@
           <br>
           <br>
           <br>
-
-          <p>Firt Name:</p>
-          <p>Last Name:</p>
-          <p>Gender: </p>
-          <p>Time in: </p>
-          <p>Time out:</p>
+         <form>
+          First Name:&nbsp;<input type="text" name="Id scan" style="width:200px"> <br><br>
+          Last Name: <input type="text" name="Id scan" style="width:200px"><br><br>
+          Gender: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="Male">Male<input type="radio"
+            name="gender" value="Female">Female<br><br>
+          Time In: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" name="Id scan" style="width:100px">&nbsp;<input
+            type="date" name="Id scan" style="width:100px"><br><br>
+          Time out: &nbsp; &nbsp;<input type="time" name="Id scan" style="width:100px">&nbsp;<input type="date"
+            name="Id scan" style="width:100px"><br>
+          </form>
         </div>
         &nbsp;&nbsp;
         <div class="col">
@@ -81,8 +88,8 @@
               <option value="audi">Audi</option>
             </select><br><br>
             Scan Property: <input type="number" name="Id scan" style="width:400px"><br><br><br>
-            <p>Property Name:</p>
-            <p>Code:</p>
+            Property Name:&nbsp;&nbsp;<input type="text" name="Id scan" style="width:200px"> <br><br>
+            Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Id scan" style="width:200px"> 
             <br>
             <br>
             <br>
