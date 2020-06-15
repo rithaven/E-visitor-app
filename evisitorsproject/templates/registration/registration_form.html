@@ -8,9 +8,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Registration</title>
-  
+  <title>Registration</title> 
+  {% block styles %}
   {% bootstrap_css %}
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+ 
   <link rel="stylesheet" href="{% static 'css/registor.css' %}"> 
   {%endblock %}
 </head>
