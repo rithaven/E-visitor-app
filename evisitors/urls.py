@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views
 from django.contrib.auth import views as auth_views
-from evisitorsproject.views import *
+from evisitorsproject.views import add_visitor
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

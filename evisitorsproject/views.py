@@ -16,7 +16,7 @@ import argparse
 import datetime as dt
 import imutils
 import time
-import cv2
+
 
 continue_reading = True
 # Create your views here.
