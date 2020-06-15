@@ -45,7 +45,8 @@ def edit_visitor(request, id=None):
        form.save()
        return redirect('/viewReport/' +str(item.id)+'/')
     return  render(request,'add_visitor.html',{'form':form})
-
+    
+@login_required(login_url='/accounts/login/')
 def viewReport(request):
     viewReport=Idscan.objects.all()
     return render (request, 'viewReport.html',{'viewReport':viewReport})
