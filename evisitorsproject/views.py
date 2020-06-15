@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 # from pyzbar import pyzbar
 import argparse
 import datetime as dt
-import imutils
+# import imutils
 import time
 
 
