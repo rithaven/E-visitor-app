@@ -27,7 +27,7 @@ def welcome(request):
     return render(request,'welcome.html')
 
 def add_visitor(request):
-    d= timedelta(microseconds=-1)
+    
     if request.method=="POST":
         form=idScanForm(request.POST)
         if form.is_valid():
