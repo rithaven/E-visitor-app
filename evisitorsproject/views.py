@@ -10,8 +10,8 @@ from django.conf import settings
 from . import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from imutils.video import VideoStream
-from pyzbar import pyzbar
+# from imutils.video import VideoStream
+# from pyzbar import pyzbar
 import argparse
 import datetime as dt
 import imutils
