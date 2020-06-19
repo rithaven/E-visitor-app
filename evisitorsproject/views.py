@@ -49,7 +49,7 @@ def edit_visitor(request, id=None):
 
 @login_required(login_url='/accounts/login/')
 def viewReport(request):
-    viewReport=Idscan.objects.all()
+    viewReport=Idscan.objects.all().order_by('-date')
     return render (request, 'viewReport.html',{'viewReport':viewReport})
 
 def search_results(request):

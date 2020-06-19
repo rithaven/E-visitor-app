@@ -12,16 +12,16 @@
 
   <title>Registration</title>
   <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
-  {% block styles %} 
+  {% block styles %}
   {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/visitor.css' %}"> 
+  <link rel="stylesheet" href="{% static 'css/visitor.css' %}">
   {%endblock %}
   <script type="text/javascript">
     function conf() {
       var con = confirm("Do you want to submit for sure?");
     }
   </script>
-  
+
 </head>
 
 <body>
@@ -31,28 +31,30 @@
     <hr style="width: 520px; float: center;margin-right:300px" size="30px">
     <br><br>
     <strong style="margin-left: 250px;"><i> we value your Id, Time and Property </i>
-    <div class="row">
+      <div class="row">
 
 
-      <div class="col" style="margin-left: 300px;">
-        
-        <div style="border-style:groove;padding-top: 10px;padding-left: 10px;background-color:white;padding-right: 10px;width: 500px;">
-<button type="menu" style="background-image: url('https://www.kdab.com/wp-content/uploads/stories/kdab_qr.png');background-size:cover;width:  40px;height: 40px;"></button>
-          <form action="" method="post">
-            {%csrf_token%}
-            <div class="form-group">
-           
-            {% bootstrap_form form layout="horizontal" %}
+        <div class="col" style="margin-left: 300px;">
+
+          <div
+            style="border-style:groove;padding-top: 10px;padding-left: 10px;background-color:white;padding-right: 10px;width: 500px;">
+           <a href="{% url 'borcodeRead'%}"> <button type="menu"
+              style="background-image: url('https://www.kdab.com/wp-content/uploads/stories/kdab_qr.png');background-size:cover;width:  40px;height: 40px;"></button></a>
+            <form action="" method="post">
+              {%csrf_token%}
+              <div class="form-group">
+
+                {% bootstrap_form form layout="horizontal" %}
+              </div>
+              <button type="submit" onclick="conf()">Save</button>
+
+            </form>
           </div>
-          <button type="submit" onclick="conf()">Save</button>
-     
-          </form>
-        </div>
-        <br>
-        
+          <br>
+
           </h5>
+        </div>
       </div>
-    </div>
   </div>
 </body>
 
