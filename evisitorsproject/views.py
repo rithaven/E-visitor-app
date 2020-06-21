@@ -4,7 +4,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect,get_object_or_404
 # from django.views.generic import ListView
-from .forms import idScanForm
+from .forms import idScanForm,FacerecognationForm
 from .models import Idscan
 from django.conf import settings
 from . import models
@@ -22,8 +22,6 @@ continue_reading = True
 # Create your views here.
 def welcome(request):
 
-     
-    
     return render(request,'welcome.html')
 
 def add_visitor(request):
@@ -53,8 +51,8 @@ def viewReport(request):
     return render (request, 'viewReport.html',{'viewReport':viewReport})
 
 def search_results(request):
-    if 'Id_number' in request.GET and request.GET["Id_number"]:
-        search_term = request.GET.get("Id_number")
+    if 'date' in request.GET and request.GET["date"]:
+        search_term = request.GET.get("date")
         searched_visitors = Idscan.search_by_Id(search_term)
         message = f"{search_term}"
 
@@ -64,37 +62,6 @@ def search_results(request):
         message = "You haven't searched for any term"
     return render(request, 'search.html',{"message":message})
 
-    # indanga=request.POST.getlist("indanga")
-    # Idsican=request.POST.getlist("Idsican")
-    # Fistname=request.POST.getlist("Fistname")
-    # Lastname=request.POST.getlist("Lastname")
-    # placeOfIsue=request.POST.getlist("placeOfIsue")
-    
-    # category=request.POST.getlist("category")
-    # propert=request.POST.getlist("propert")
-    # propertycode=request.POST.getlist("propertycode")
-    # propertyname=request.POST.getlist("propertyname")
-    
-    # print(indanga,Idsican,Fistname,Lastname,placeOfIsue,category,propert,propertycode,propertyname)
-    
-    # visitorr=VisitorInfo(indanga=indanga,Idsican=Idscan,Fistname=Fistname,Lastname=Lastname,Entrytime=Entrytime,Exittime=Exittime,category=category,propert=propert,propertycode=propertycode,propertyname=propertyname)
-    # visitorr.save()
-
-        
-
-    # return redirect('fingerPrint')
-        # args={'form':form,'text':text}
-  
-# def visitor_delete_view(request,id):
-#     obj=get_object_or_404(Idscan, id=id)
-#     if request.method=="POST":
-#         obj.delete()
-#         return redirect('/viewReport/')
-#     context={
-#         "object":obj
-#     }
-   
-#     return render(request,"viewRepoert.html",context)
     
 def fingerPrint(request):
 
@@ -104,8 +71,15 @@ def rfidScan(request):
     return  render(request,'RFIDscan.html')
     
 def faceRecognation(request):
+    if request.method=="POST":
+        form= FacerecognationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/viewreport/')
+    else:
+        form=FacerecognationForm()
 
-    return  render(request,'faceRecognation.html')   
+    return  render(request,'faceRecognation.html',{'form':form})   
 
 def ScanEquip(request):
 

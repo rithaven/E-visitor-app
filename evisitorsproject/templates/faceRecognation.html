@@ -41,6 +41,11 @@
             background: lightblue;
         }
     </style>
+    <script type="text/javascript">
+        function conf() {
+          var con = confirm("Do you want to submit for sure?");
+        }
+      </script>
 </head>
 
 <body>
@@ -52,22 +57,19 @@
             <div class="col">
                 <h5>Modern Approach of security. Artificial Intergence</h5>
 
-                <form>
+                
                    <h6 style="color: bisque;">Face recognation</h2> <br><br>
-                    <div style="border-style:groove;width: 770px;height: 305px;padding:5px;margin-left: 170px;">
-                        First Name:&nbsp;<input type="text" name="Id scan" style="width:400px"><button type="button"><img
-                                src="https://heartland.cc/wp-content/uploads/2018/02/male-placeholder.jpg" height="100px"
-                                width="100px"></button><br><br>
-                        Last Name: <input type="text" name="Id scan" style="width:400px"><br><br>
-                        Id card:&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Id scan" style="width:400px"><br><br>
-                        Gender: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gender" value="Male">Male<input
-                            type="radio" name="gender" value="Female">Female<br><br>
-                        Time In: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" name="Id scan"
-                            style="width:200px">&nbsp;<input type="date" name="Id scan" style="width:200px"><br><br>
-                        Time out: &nbsp; &nbsp;<input type="time" name="Id scan" style="width:200px">&nbsp;<input
-                            type="date" name="Id scan" style="width:200px"><br>
-                            <button style="background:lightcyan;">Save</button>
-
+                    <div style="border-style:groove;width: 770px;height: 500px;padding:5px;margin-left: 170px;">
+                       
+                        <form action="" method="post">
+                        {%csrf_token%}
+                        <div class="form-group">
+          
+                          {% bootstrap_form form layout="horizontal" %}
+                        </div>
+                        <button  class="btn btn-info"type="submit" onclick="conf()">Save</button>
+          
+                      </form>
                 </form>
             </div>
             </div>

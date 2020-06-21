@@ -9,6 +9,11 @@ class idScanForm(ModelForm):
             model= Idscan
             fields='__all__'
 
+class FacerecognationForm(ModelForm):
+      class Meta:
+            model=Facerecognation
+            fields='__all__'
+
 class FingerprintForm(ModelForm):
       class Meta:
             model= Fingerprint

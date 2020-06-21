@@ -1,48 +1,42 @@
-{%extends 'base.html'%} 
+{%extends 'base.html'%}
 {% block content %}
 <div class="container">
 
   <div class="row">
-    {% if visitors%}
-      <h2>Found {{ visitors }} of searched term {{message}}</h2>
+
+    {% if visitors %}
+    <h2>{{message}}</h2>
     {% else %}
-      <h2> Found 0 visitors for the search term {{message}}</h2>
+   <h2 style="margin-left: 100px;"><strong style="color:green"> {{message}}</u></strong></h2>
+
     {% endif %}
 
-  </div>
-
-  <div class="row">
-
-  {% if visitors %}
-    {% for avisitor in visitors %}
+    {% for visitor in visitors%}
+    {%if visitors%}
     <table>
 
-        <thead>
-          <tr>
-            <th scope="col">Visitor Identifications</th>
-            <th scope="col">Entry Date</th>
-            <th scope="col">Exit Date</th>
-            <th scope="col">About Equipments</th>
-            <th scope="col">view</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          <tr>
-            <tr>
-              <td>{{repos.Id_number}},{{repos.First_name}}{{repos.Last_name}}, {{repos.place_Of_Isue}},
-                {{repos.property}}</td>
-              <td>{{repos.property_code}}</td>
-              <td>{{repos.Institution_name}},{{repos.date}}</td>
-              
-            <td scope="col"><button type="reset" class="btn btn-primary" style="font-size: 12px;width: 100px;"> View Details</button><br><br>
-              
-          </tr>
-         
-        </tbody>
-      </table>
-    {% endfor %}
-  {% endif %}
+      <thead>
+        <tr>
+          <th scope="col">Visitor Identifications</th>
+          <th scope="col">Property Details</th>
+          <th scope="col">Date</th>
+          <th scope="col">view</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for repos in viewReport%}
+        <tr>
+          <td>{{repos.Id_number}},{{repos.First_name}}{{repos.Last_name}}, {{repos.place_Of_Isue}}
+          </td>
+          <td> {{repos.Institution_name}},{{repos.property}},{{repos.property_code}}</td>
+          <td>{{repos.date}}</td>
+          <td><button type="menu" class="btn btn-primary">Details</button></td>
+          {%endfor%}
+      </tbody>
+    </table>
+
+    {% endif %}
+    {%endfor%}
   </div>
 </div>
 {% endblock %}

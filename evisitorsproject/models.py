@@ -8,12 +8,31 @@ from django.db import models
 
 # Create your models here.
 class Idscan(models.Model):
+      CHOICES = (
+        ('A visitor', (
+            (11, 'v_Laptop'),
+            (12, 'v_tablet'),
+            (13, 'v_Desktop machine'),
+        )),
+
+        ('Instutition', (
+            (11, 'inst_Laptop'),
+            (12, 'inst_tablet'),
+            (13, 'inst_Desktop machine'),
+        )),
+
+        ('current instutition', (
+            (11, 'current_Laptop'),
+            (12, 'current_tablet'),
+            (13, 'current_Desktop machine'),
+        )),
+    )
       Id_number=models.CharField(null=True,max_length=21)
       First_name=models.CharField(max_length=50, null=True)
       Last_name=models.CharField(max_length=30,null=True)
       place_Of_Isue=models.CharField(max_length=21,null=True)
-    
-      property=models.CharField(max_length=300,null=True)
+     
+      property_owner=models.CharField(choices=CHOICES,max_length=300,null=True)
       property_code=models.CharField(max_length=300,null=True)
       Institution_name=models.CharField(max_length=1000,null=True)
       date = models.DateTimeField(auto_now_add=True,null=True)
@@ -30,7 +49,7 @@ class Idscan(models.Model):
         return vistors
       @classmethod
       def search_by_Id(cls,search_term):
-        visitors = cls.objects.filter(Id_number__icontains=search_term)
+        visitors = cls.objects.filter(Idscan__date__icontains=search_term)
         return visitors
 
       def __str__(self):
@@ -49,19 +68,14 @@ class Idscan(models.Model):
       #       ordering = ['indanga']
 
 class VisitorInfo(models.Model):
-      indanga=models.CharField(max_length=30)
-      Firstname=models.CharField(max_length=30)
-      Lastname=models.CharField(max_length=30)
-      placeOfIsue=models.CharField(max_length=30)
-      category=models.CharField(max_length=30)
-      propert=models.CharField(max_length=30)
-      propertycode=models.CharField(max_length=30)
-      propertyname=models.CharField(max_length=30)
-      propertyname=models.CharField(max_length=30)
-
-      def __str__(self):
-            return self.indanga
-
+      Idnumber=models.CharField(max_length=30,null=True)
+      FirstName=models.CharField(max_length=30,null=True)
+      LastName=models.CharField(max_length=30,null=True)
+      EntryTime=models.DateField(null=True)
+      ExitTime=models.DateField(null=True)
+      category=models.CharField(max_length=30,null=True)
+      propertycode=models.CharField(max_length=30,null=True)
+      propertyname=models.CharField(max_length=30,null=True)
 
 class Fingerprint(models.Model):
       Idnumber=models.CharField(max_length=30,null=True)
@@ -84,13 +98,21 @@ class Rfidscan(models.Model):
       propertyname=models.CharField(max_length=30,null=True)
 
 class Facerecognation(models.Model):
-      Idnumber=models.CharField(max_length=30,null=True)
-      FirstName=models.CharField(max_length=30,null=True)
-      LastName=models.CharField(max_length=30,null=True)
-      EntryTime=models.DateField(null=True)
-      ExitTime=models.DateField(null=True)
-      propertycode=models.CharField(max_length=30,null=True)
-      propertyname=models.CharField(max_length=30,null=True)
+      
+      face=models.ImageField(upload_to ='viewReport/')
+      Id_number=models.CharField(null=True,max_length=21)
+      First_name=models.CharField(max_length=50, null=True)
+      Last_name=models.CharField(max_length=30,null=True)
+      place_Of_Isue=models.CharField(max_length=21,null=True)
+     
+      property_owner=models.CharField(max_length=300,null=True)
+      property_code=models.CharField(max_length=300,null=True)
+      Institution_name=models.CharField(max_length=1000,null=True)
+      date = models.DateTimeField(auto_now_add=True,null=True)
+
+      def __str__(self):
+            return self.Id_number
+
 
 class  ScanEquipment(models.Model):
       FullName=models.CharField(max_length=30,null=True)
