@@ -45,62 +45,41 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" style="margin-left: 200px;">
     <h5>Put your finger on fingerprint provided
     </h5>
     <br>
     <div class="row">
       <div class="col">
         <div style="margin-left: 180px;">
-          <div style="border-style:groove;width: 117px;height: 100px;padding:1px ">
+          <!-- <div style="border-style:groove;width: 117px;height: 100px;padding:1px ">
             <div style="border-style:groove;width: 110px;height: 94px; ">
-              <Button style="width: 104px;height: 88px;padding-left: 10px;background-color: white;"><img src="https://cdn3.vectorstock.com/i/1000x1000/98/52/id-app-icon-fingerprint-vector-20839852.jpg" style="width:90px;height: 70px;"></Button>
-              <div style="border-style:groove;width: 627px;height: 165px;margin-left: 300px;padding-top: 20px;">
+              <Button style="width: 104px;height: 88px;padding-left: 10px;background-color: white;"><img src="https://cdn3.vectorstock.com/i/1000x1000/98/52/id-app-icon-fingerprint-vector-20839852.jpg" style="width:90px;height: 70px;"></Button> -->
+              <!-- <div style="border-style:groove;width: 627px;height: 165px;margin-left: 300px;padding-top: 20px;"> -->
 
               </div>
             </div>
           </div>
-        </div>
+      
         <br>
         <br>
         <br>
         <br>
-        <div style="border-style: groove;padding-top: 10px;padding-left: 10px;width: 700px;">
+        <div style="border-style: groove;padding-top: 10px;padding-left: 10px;width: 500px;height: 300px;">
           <form mothod="POST">
 
             {%csrf_token%}
             {{form}}
-            <button type="submit" style="float: right;background: rgb(12, 224, 240);"> Save</button>
+           
            <p><strong>Recoded information</strong></p>
+           Id Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="integer" name="Id scan" style="padding-right:150px;" required><br><br>
+
             First Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="integer" name="Id scan" style="padding-right:150px;" required><br><br>
             Last Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Fist name" style="padding-right:150px" required><br><br>
-            Tel(optional):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Last name" style="padding-right:150px;" required>
-            <button
-              style="border-style: groove;margin-right: 10px;height: 130px;width: 200px;background: rgb(12, 224, 240);border-radius: 5px solid black;">
-              Exit Time<br>
-              <input type="time" name="exit" required></button><br><br>
-            Recorded Time <input type="time" name="Entry time" style="width: 170px;">&nbsp;&nbsp;<input type="date"
-              name="Entry time" style="width: 178px;" required><br><br>
-            Entry Time &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" name="Exit time"
-              style="width: 180px;" required>&nbsp;&nbsp;<input type="date" name="Entry time" style="width: 170px;">
-            
-        </div>
-      </div>
-      <br>
-      <div class="col">
-        <br>
-        <h5>We value your property</h5>
-        <br>
-       
-        Property Name: &nbsp;&nbsp;<input type="number" name="code" style="width: 250px;" required><br><br>
-        Property Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="code" style="width: 250px;" required>
+            place of isue &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Fist name" style="padding-right:150px" required><br><br>
 
-        <br>
-        <br>
-        <div style="border-style: groove;padding-top: 10px;padding-left: 10px;width: 380px;height:260px;">
-          <p>Property name:</p>
-          <p>Property Id:
-          </p>
+            Tel(optional):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Last name" style="padding-right:150px;" required>
+            <button type="submit" style="float: right;background: rgb(12, 224, 240);"> Save</button>
           </form>
           <br>
           <br>
@@ -108,9 +87,7 @@
           <br>
           <br>
           <i>
-            <p style="text-align: center;">Security check Point
-              <p> {{add_visitor.indanga}}</p>
-          </i></p>
+          </div>
         </div>
       </div>
     </div>

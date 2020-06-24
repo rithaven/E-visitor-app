@@ -36,17 +36,16 @@
 
         <div class="col" style="margin-left: 300px;">
 
-          <div
-            style="border-style:groove;padding-top: 10px;padding-left: 10px;background-color:white;padding-right: 10px;width: 500px;">
+          <div class="card" style="border-radius:20%;width: 550px; padding-left: 20px; padding-right: 20px;padding-top: 20px;padding-bottom: 20px;">
            <a href="{% url 'borcodeRead'%}"> <button type="menu"
-              style="background-image: url('https://www.kdab.com/wp-content/uploads/stories/kdab_qr.png');background-size:cover;width:  40px;height: 40px;"></button></a>
+              style="background-image: url('https://www.kdab.com/wp-content/uploads/stories/kdab_qr.png');background-size:cover;width:  40px;height: 40px;margin-right: 20px;"></button></a>
             <form action="" method="post">
               {%csrf_token%}
               <div class="form-group">
 
                 {% bootstrap_form form layout="horizontal" %}
               </div>
-              <button  class="btn btn-info"type="submit" onclick="conf()">Save</button>
+              <button  class="btn btn-info"type="submit" style="margin-right: 20px;" onclick="conf()">Save</button>
 
             </form>
           </div>

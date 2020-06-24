@@ -8,33 +8,12 @@ from django.db import models
 
 # Create your models here.
 class Idscan(models.Model):
-      CHOICES = (
-        ('A visitor', (
-            (11, 'v_Laptop'),
-            (12, 'v_tablet'),
-            (13, 'v_Desktop machine'),
-        )),
-
-        ('Instutition', (
-            (11, 'inst_Laptop'),
-            (12, 'inst_tablet'),
-            (13, 'inst_Desktop machine'),
-        )),
-
-        ('current instutition', (
-            (11, 'current_Laptop'),
-            (12, 'current_tablet'),
-            (13, 'current_Desktop machine'),
-        )),
-    )
+    
       Id_number=models.CharField(null=True,max_length=21)
       First_name=models.CharField(max_length=50, null=True)
       Last_name=models.CharField(max_length=30,null=True)
       place_Of_Isue=models.CharField(max_length=21,null=True)
-     
-      property_owner=models.CharField(choices=CHOICES,max_length=300,null=True)
-      property_code=models.CharField(max_length=300,null=True)
-      Institution_name=models.CharField(max_length=1000,null=True)
+      Tel=models.CharField(null=True,max_length=21)
       date = models.DateTimeField(auto_now_add=True,null=True)
 
 
@@ -99,16 +78,13 @@ class Rfidscan(models.Model):
 
 class Facerecognation(models.Model):
       
-      face=models.ImageField(upload_to ='viewReport/')
+      # face_image=models.ImageField(upload_to ='viewReport/',null=True)
       Id_number=models.CharField(null=True,max_length=21)
       First_name=models.CharField(max_length=50, null=True)
       Last_name=models.CharField(max_length=30,null=True)
       place_Of_Isue=models.CharField(max_length=21,null=True)
-     
-      property_owner=models.CharField(max_length=300,null=True)
-      property_code=models.CharField(max_length=300,null=True)
-      Institution_name=models.CharField(max_length=1000,null=True)
-      date = models.DateTimeField(auto_now_add=True,null=True)
+      Tel=models.CharField(null=True,max_length=21)
+    
 
       def __str__(self):
             return self.Id_number

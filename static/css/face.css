@@ -1,0 +1,33 @@
+h5 {
+    text-align: center;
+    color: black;
+}
+
+body {
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfQiqlAEdd9W8ZixvOgobPFf1h_GRp9gXvbhD8fGuepZEVmUH_');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+hr {
+    font-style: bold;
+    color: black;
+
+
+}
+
+.container {
+    margin-top: 50px;
+}
+
+select {
+    width: 200px;
+    background: lightblue;
+}
+.face{
+    background-image: url('../images/face.png');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

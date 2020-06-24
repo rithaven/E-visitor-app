@@ -12,40 +12,15 @@
     <title>Registration</title>
     <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
 
-    <style>
-        h5 {
-            text-align: center;
-            color: black;
-        }
-
-        body {
-            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfQiqlAEdd9W8ZixvOgobPFf1h_GRp9gXvbhD8fGuepZEVmUH_');
-            background-attachment: fixed;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-
-        hr {
-            font-style: bold;
-            color: black;
-
-
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-
-        select {
-            width: 200px;
-            background: lightblue;
-        }
-    </style>
+    {% block styles %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/face.css' %}">
+    {%endblock %}
     <script type="text/javascript">
         function conf() {
-          var con = confirm("Do you want to submit for sure?");
+            var con = confirm("Do you want to submit for sure?");
         }
-      </script>
+    </script>
 </head>
 
 <body>
@@ -57,27 +32,27 @@
             <div class="col">
                 <h5>Modern Approach of security. Artificial Intergence</h5>
 
-                
-                   <h6 style="color: bisque;">Face recognation</h2> <br><br>
-                    <div style="border-style:groove;width: 770px;height: 500px;padding:5px;margin-left: 170px;">
-                       
+
+                <h6 style="color: bisque;margin-left: 200px;">Face recognation</h2> <br><br>
+                    <div style="border-style:groove;width: 770px;height: 320px;padding:5px;margin-left: 170px;">
+                        <button type="menu"style="width: 50px; height: 50px;" class="face"></button></a>
                         <form action="" method="post">
-                        {%csrf_token%}
-                        <div class="form-group">
-          
-                          {% bootstrap_form form layout="horizontal" %}
-                        </div>
-                        <button  class="btn btn-info"type="submit" onclick="conf()">Save</button>
-          
-                      </form>
-                </form>
-            </div>
-            </div>
-        </div>
+                            {%csrf_token%}
+    <div class="form-group">
+
+        {% bootstrap_form form layout="horizontal" %}
+    </div>
+    <button class="btn btn-info" type="submit" onclick="conf()">Save</button>
+
+    </form>
+    </form>
+    </div>
+    </div>
+    </div>
     </div>
     </div>
 
-</body>
+    </body>
 
 </html>
 {%endblock%}
