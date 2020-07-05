@@ -25,55 +25,36 @@
 
     <title>Scaned Eqipment</title>
 
-    <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+    
+  
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/equip.css' %}">
+<link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+{%endblock %}
+<script type="text/javascript">
+  function conf() {
+    var con = confirm("Do you want to submit for sure?");
+  }
+//   function checkTALength(event) {
+//   var text = $(this).val();
+//   if(text.length > 21) {
+//     $(this).addClass('overlimit');
+//   } else {
+//     $(this).removeClass('overlimit');
+//   }
+// }
+// function checkSubmit(event) {
+//   if($('.overlimit', this).length > 0) { return false; }
+// }
 
-    <style>
-        body {
-            margin: 0;
-            font-size: .9rem;
-            font-weight: 400;
-            line-height: 1.6;
-            color: #212529;
-            text-align: left;
-            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfQiqlAEdd9W8ZixvOgobPFf1h_GRp9gXvbhD8fGuepZEVmUH_');
-            background-attachment: fixed;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
+// $(document).ready(function() {   
+//   $('textarea').change(checkTALength);
+//   $('textarea').keyup(checkTALength);
+//   $('form').submit(checkSubmit);
+// }); 
+</script>
 
-        .navbar-laravel {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
-        }
-
-        .navbar-brand,
-        .nav-link,
-        .my-form,
-        .login-form {
-            font-family: Raleway, sans-serif;
-        }
-
-        .my-form {
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-        }
-
-        .my-form .row {
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        .login-form {
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-        }
-
-        .login-form .row {
-            margin-left: 0;
-            margin-right: 0;
-        }
-    </style>
-</head>
-</head>
 
 <body>
 
@@ -104,22 +85,18 @@
                     <div class="card">
                         <div class="card-header">All information</div>
                         <div class="card-body">
-                            EQUIP.NUMBER&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
-                                id="fname" name="firstname" placeholder="Equip. number.."><button type="reset"
-                                class="c">Reset</button>
-                            <button style="color: blue;" class="b" type="submit">Save</button>
-                            <br><br>
-                            PRODUCT NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
-                                id="lname" name="lastname" placeholder="product name.."><br><br>
-                            Owner&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" id="lname" name="lastname" placeholder="Equip . room.."><br><br>
-
-                            <button type="submit" class="btn btn-primary">
-                                Save
+                            <form action="" method="post">
+                                {%csrf_token%}
+                                <div class="form-group">
+                  
+                                  {% bootstrap_form form layout="horizontal" %}
+                                  <button type="reset" class="btn btn-primary">Reset</button>
+                                  <button style="color: blue;" class="btn btn-info" type="submit">Save</button>
                             </button>
+                        </form>
                         </div>
                     </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>

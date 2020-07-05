@@ -3,13 +3,13 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect,get_object_or_404
-# from django.views.generic import ListView
-from .forms import idScanForm,FacerecognationForm
-from .models import Idscan
+from .forms import idScanForm,FacerecognationForm,ScanEquipmentForm,FingerprintForm,RfidscanForm,RegistrationForm
+from .models import Idscan,ScanEquipment,Facerecognation,Rfidscan,Fingerprint,Registration
 from django.conf import settings
 from . import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 # from imutils.video import VideoStream
 # from pyzbar import pyzbar
 import argparse
@@ -25,7 +25,6 @@ def welcome(request):
     return render(request,'welcome.html')
 
 def add_visitor(request):
-    
     if request.method=="POST":
         form=idScanForm(request.POST)
         if form.is_valid():
@@ -48,27 +47,51 @@ def edit_visitor(request, id=None):
 @login_required(login_url='/accounts/login/')
 def viewReport(request):
     viewReport=Idscan.objects.all().order_by('-date')
-    return render (request, 'viewReport.html',{'viewReport':viewReport})
+    viewReportE=ScanEquipment.objects.all().order_by('-date')
+    viewReportF=Fingerprint.objects.all().order_by('-date')
+    viewReportG=Rfidscan.objects.all().order_by('-date')
+    viewReportH=Facerecognation.objects.all().order_by('-date')
+    viewReportI=ScanEquipment.objects.all().order_by('-date')
+    viewReportK=Registration.objects.all().order_by('-date')
+    return render (request, 'viewReport.html',{'viewReport':viewReport,'viewReportE':viewReportE,'viewReportF':viewReportF,'viewReportG':viewReportG,'viewReportH':viewReportH,'viewReportH':viewReportH,'viewReportI':viewReportI,'viewReportK':viewReportK})
 
-def search_results(request):
-    if 'date' in request.GET and request.GET["date"]:
-        search_term = request.GET.get("date")
-        searched_visitors = Idscan.search_by_Id(search_term)
-        message = f"{search_term}"
+def search(request):
+    if request.method=='POST':
+        srch=request.POST['srh']
+        if srch:
+            match=Idscan.objects.filter(Q(date__icontains=srch))
+            if match:
+                return render(request,'search.html',{'sr':match})
+            else:
+                message.error(request,'no result found')
+        else:
+            return HttpResponseRedirect('/search/')
+    return render(request,'search.html')
+          
 
-        return render(request, 'search.html',{"message":message,"visitors": searched_visitors})
+   
 
-    else:
-        message = "You haven't searched for any term"
-    return render(request, 'search.html',{"message":message})
-
-    
 def fingerPrint(request):
+    if request.method=="POST":
+        form=FingerprintForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/viewreport/')
+    else:
+        form=FingerprintForm()
+    
+    return  render(request,'fingerPrint.html',{'form':form})
 
-    return  render(request,'fingerPrint.html')
+
 def rfidScan(request):
-
-    return  render(request,'RFIDscan.html')
+    if request.method=="POST":
+        form=FingerprintForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/viewreport/')
+    else:
+        form=FingerprintForm()
+    return  render(request,'RFIDscan.html',{'form':form})
     
 def faceRecognation(request):
     if request.method=="POST":
@@ -78,18 +101,31 @@ def faceRecognation(request):
             return HttpResponseRedirect('/viewreport/')
     else:
         form=FacerecognationForm()
-
     return  render(request,'faceRecognation.html',{'form':form})   
 
 def ScanEquip(request):
-
-    return  render(request,'ScanEquip.html') 
+    if request.method=="POST":
+        form=ScanEquipmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/viewreport/')
+    else:
+        form=ScanEquipmentForm()
+    
+    return  render(request,'ScanEquip.html',{'form':form})
 
 @login_required(login_url='/accounts/login/')
 def RegisterEqipment(request):
-
-    return  render(request,'RegisterEqipment.html') 
+    if request.method=="POST":
+        form=RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/viewreport/')
+    else:
+        form=RegistrationForm()
     
+    return  render(request,'RegisterEqipment.html',{'form':form})
+   
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -102,9 +138,8 @@ def change_password(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = PasswordChangeForm(request.user)
-    return render(request, 'welcome.html', {
-        'form': form
-    })
+    return render(request, 'welcome.html', {'form': form})
+   
 
 def borcodeRead(request):
 

@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('evisitorsproject.urls')),
     url(r'^viewreport/$',add_visitor),
+    # url(r'^search/$',search),
     url(r'^accounts/',include('registration.backends.simple.urls')),
     #  url(r'delete_visitor/<int:id>/delete/',visitor_delete_view, name='viewReport'),
     # url(r'^add_visitor/(?P<id>\d+)/delete$',evisitorsproject.views.delete_visitor, name='delete_visitor'),

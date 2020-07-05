@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
-{% block content%}
 {% load bootstrap4 %}
 {% load staticfiles %}
-
+{% block content%}
 <!DOCTYPE html>
 <html>
 
@@ -12,86 +11,64 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <title>Registration</title>
+
+  {% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/finger.css' %}">
   <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
-  <style>
-    h5 {
-      text-align: left;
-      color: black;
+  {%endblock %}
+  <script type="text/javascript">
+    function conf() {
+      var con = confirm("Do you want to submit for sure?");
     }
 
-    body {
-      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfQiqlAEdd9W8ZixvOgobPFf1h_GRp9gXvbhD8fGuepZEVmUH_');
-      background-attachment: fixed;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
+  //   function checkTALength(event) {
+  //   var text = $(this).val();
+  //   if(text.length > 21) {
+  //     $(this).addClass('overlimit');
+  //   } else {
+  //     $(this).removeClass('overlimit');
+  //   }
+  // }
+  // function checkSubmit(event) {
+  //   if($('.overlimit', this).length > 0) { return false; }
+  // }
+  
+  // $(document).ready(function() {   
+  //   $('textarea').change(checkTALength);
+  //   $('textarea').keyup(checkTALength);
+  //   $('form').submit(checkSubmit);
+  // }); 
+  </script>
 
-    hr {
-      font-style: bold;
-      color: black;
-
-
-    }
-
-    .container {
-      margin-top: 25px;
-    }
-
-    select {
-      width: 200px;
-      background: lightblue;
-    }
-  </style>
 </head>
-
 <body>
-  <div class="container" style="margin-left: 200px;">
+  <div class="container" style="margin-left: 300px;">
     <h5>Put your finger on fingerprint provided
     </h5>
     <br>
     <div class="row">
       <div class="col">
         <div style="margin-left: 180px;">
-          <!-- <div style="border-style:groove;width: 117px;height: 100px;padding:1px ">
-            <div style="border-style:groove;width: 110px;height: 94px; ">
-              <Button style="width: 104px;height: 88px;padding-left: 10px;background-color: white;"><img src="https://cdn3.vectorstock.com/i/1000x1000/98/52/id-app-icon-fingerprint-vector-20839852.jpg" style="width:90px;height: 70px;"></Button> -->
-              <!-- <div style="border-style:groove;width: 627px;height: 165px;margin-left: 300px;padding-top: 20px;"> -->
-
-              </div>
-            </div>
-          </div>
-      
-        <br>
-        <br>
-        <br>
-        <br>
-        <div style="border-style: groove;padding-top: 10px;padding-left: 10px;width: 500px;height: 300px;">
-          <form mothod="POST">
-
-            {%csrf_token%}
-            {{form}}
-           
-           <p><strong>Recoded information</strong></p>
-           Id Number &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="integer" name="Id scan" style="padding-right:150px;" required><br><br>
-
-            First Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="integer" name="Id scan" style="padding-right:150px;" required><br><br>
-            Last Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Fist name" style="padding-right:150px" required><br><br>
-            place of isue &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Fist name" style="padding-right:150px" required><br><br>
-
-            Tel(optional):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Last name" style="padding-right:150px;" required>
-            <button type="submit" style="float: right;background: rgb(12, 224, 240);"> Save</button>
-          </form>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <i>
-          </div>
         </div>
       </div>
     </div>
+    <br>
+    <div class="card"
+      style="border-radius:20%;width: 600px; padding-left: 40px; padding-right: 40px;padding-top: 40px;padding-bottom: 40px;margin-right: 300px;">
+      <p><strong>Recoded information</strong>
+      <button type="menu"
+              style="background-image: url('https://www.kdab.com/wp-content/uploads/stories/kdab_qr.png');background-size:cover;width:  40px;height: 40px;margin-right: 20px;"></button></a>
+            </p>
+      <form mothod="POST">
+        {%csrf_token%}
+        {% bootstrap_form form layout="horizontal" %}
+          <button type="reset" class="btn btn-primary">Reset</button>
+          <button style="color: blue;" class="btn btn-info" type="submit">Save</button>
+      </form>
+    </div>
   </div>
+  
 </body>
 </html>
 {%endblock%}

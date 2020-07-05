@@ -4,17 +4,19 @@
 
   <div class="row">
 
-    {% if visitors %}
-    <h2>{{message}}</h2>
-    {% else %}
-   <h2 style="margin-left: 100px;"><strong style="color:green"> {{message}}</u></strong></h2>
-
+    {% if messages %}
+    <ul class="messages">
+      {% for k in messages%}
+      <li style="color: green;">{{ k }}</li>
+      {%endfor%}
+    </ul>
     {% endif %}
 
-    {% for visitor in visitors%}
-    {%if visitors%}
-    <table>
 
+    
+    <table>
+      {% if sr %}
+      {% for k in sr%}
       <thead>
         <tr>
           <th scope="col">Visitor Identifications</th>
@@ -24,19 +26,18 @@
         </tr>
       </thead>
       <tbody>
-        {%for repos in viewReport%}
-        <tr>
-          <td>{{repos.Id_number}},{{repos.First_name}}{{repos.Last_name}}, {{repos.place_Of_Isue}}
-          </td>
-          <td> {{repos.Institution_name}},{{repos.property}},{{repos.property_code}}</td>
-          <td>{{repos.date}}</td>
-          <td><button type="menu" class="btn btn-primary">Details</button></td>
-          {%endfor%}
+       
+         <tr>
+           <td><strong> ID:</strong> {{k.Id_number}},<img src="{{repos.face_image.url}}"
+               class="img-responsive"><br><strong>FirstName:</strong> {{k.First_name}}<br><strong> Last
+               Name:</strong>{{k.Last_name}}<br><strong>Place of
+               Isue/ID:</strong>{{k.place_Of_Isue}}<br><strong> Tel: </strong>{{k.Tel}}<br><strong>Date:</strong>{{k.date}}</td>
+             <td><button type="menu" class="btn btn-primary">Details</button></td>
+           {%endfor%}
+           {%endif%}
       </tbody>
     </table>
 
-    {% endif %}
-    {%endfor%}
   </div>
 </div>
 {% endblock %}

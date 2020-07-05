@@ -10,15 +10,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Registration</title>
-  
   {% block styles %}
   {% bootstrap_css %}
-  <!-- <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}"> -->
   <link rel="stylesheet" href="{% static 'css/registor.css' %}">
-  
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
   {%endblock %}
 </head>
-
 <body>
   <div class="container">
     <div class="smart-wrap">
@@ -33,10 +30,10 @@
                 <ul class="dropdown-menu" role="menu" style="background-color: bisque; border-radius: 20%;">
 
                   <li style=" padding-left:5px">
-                    <a href="{%url 'viewReport'%}">  View Report</a>
+                    <a href="{%url 'viewReport'%}"> View Report</a>
                   </li>
                   <li style=" padding-left:5px">
-                    <a href="/logout">   Logout</a>
+                    <a href="/logout"> Logout</a>
                   </li>
                 </ul>
               </li>
@@ -50,38 +47,26 @@
             {% endif%}
           </div><br>
           <br>
-          <h4><i class="fa fa-pencil-square"></i>E-VISITORS EQUIPMENTS REGISTRATION FORM</h4>
+          <h4><i class="fa fa-pencil-square"></i>CURRENT INSTUTITION EQUIPMENTS REGISTRATION FORM</h4>
           <!-- end .form-header section --><br>
-          <div style="border-style:groove;background-color:white;padding-top: 10px;padding-left:2px;padding-right: 10px;width: 800px;margin-left: 200px;">
+          <div class="container" style="margin-left: 300px;">
+          <div class="card"
+            style="border-radius:20%;width: 550px; padding-left: 20px; padding-right: 40px;padding-top: 30px;padding-bottom: 20px;">
+              <form mothod="POST">
+                {%csrf_token%}
+                {% bootstrap_form form layout="horizontal" %}
+                <button type="reset" class="btn btn-primary">Reset</button>
+                <button style="color: blue;" class="btn btn-info" type="submit">Save</button>
 
-          <div class="container">
-
-            <form mothod="POST" style=" margin-left:300px">
-              
-              {%csrf_token%}
-              {{form}}
-              EQUIP.NUMBER&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="fname"
-                name="firstname" placeholder="Equip. number.."><button 
-                type="reset" class="c">Reset</button>
-              <button style="color: blue;" class="b" type="submit">Save</button>
-              <br><br>
-              PRODUCT NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="lname"
-                name="lastname" placeholder="product name.."><br><br>
-              EQUIP.ROOM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-                type="text" id="lname" name="lastname" placeholder="Equip . room.."><br><br>
-              PRODUCT NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="lname" name="lastname"
-                placeholder="Product Name.."><br><br>
-              EQUIPMENT ID/CODE <input type="text" id="lname" name="lastname" placeholder="Equip ID/code.."><br><br>
-              EQUIP.LOCATION &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="lname"
-                name="lastname" placeholder="Equip.location.."><br><br>
-            </form>
+              </form>
+            </div>
           </div>
-          </div>
-          
         </div>
       </div>
     </div>
   </div>
+  </div>
 </body>
+
 </html>
 {%endblock%}

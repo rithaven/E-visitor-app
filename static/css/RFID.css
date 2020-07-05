@@ -1,0 +1,29 @@
+
+    h5 {
+      text-align: left;
+      color: black;
+    }
+
+    body {
+      background: url('../images/bac.png');
+      background-attachment: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    hr {
+      font-style: bold;
+      color: black;
+
+
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    select {
+      width: 200px;
+      background: lightblue;
+    }
+ 

@@ -12,12 +12,13 @@
 
 <head>
   <title>View Report</title>
-  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+  
 
 
   {% block styles %}
   {% bootstrap_css %}
   <link rel="stylesheet" href="{% static 'css/viewReport.css' %}">
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
   {%endblock %}
 </head>
 
@@ -25,34 +26,42 @@
   <h1 class='text-center'
     style="margin-bottom:5%;margin-top:3%; color: rgb(219, 223, 235);font-family: 'Playfair Display', serif;" id="text">
     View Report Portal</h1>
-  <div class="container">
-    <form style="margin-left:500px" method="GET" role="search"action="{% url 'search_results' %}">
-      <input type="search" placeholder="Search by Date">
-    </form>
-    <div class="row" style="margin-top: 3%; margin-left: 3%">
-
-      <table>
-
+  <form style="margin-left:500px" method="GET" role="search" action="{% url 'search' %}">
+    <input type="search" name="srh"placeholder="Search by Date">
+  </form>
+  <div class="row" style="margin-top: 3%; margin-left: 3%">
+    <div class="col">
+      <h1>Recorded Data</h1>
+      <hr>
+      <table border="5">
         <thead>
           <tr>
             <th scope="col">Visitor Identifications</th>
             <th scope="col">Property Details</th>
-            <th scope="col">Date</th>
-            <th scope="col">view</th>
+            <th scope="col">view Details</th>
           </tr>
         </thead>
         <tbody>
           {%for repos in viewReport%}
+          {%for reposi in viewReportE%}
+
           <tr>
-            <td>{{repos.Id_number}},<img src="{{repos.face_image.url}}"class="img-responsive">,{{repos.First_name}}{{repos.Last_name}}, {{repos.place_Of_Isue}}
-              </td>
-            <td>   {{repos.Institution_name}},{{repos.property_owner}},{{repos.property_code}}</td>
-            <td>{{repos.date}}</td>
-<td><button type="menu" class="btn btn-primary">Details</button></td>
-          {%endfor%}
+            <td><strong> ID:</strong> {{repos.Id_number}},<img src="{{repos.face_image.url}}"
+                class="img-responsive"><br><strong>FirstName:</strong> {{repos.First_name}}<br><strong> Last
+                Name:</strong>{{repos.Last_name}}<br><strong>Place of
+                Isue/ID:</strong>{{repos.place_Of_Isue}}<br><strong> Tel: </strong>{{repos.Tel}}<br><strong>Date:</strong>{{repos.date}}</td>
+
+            <td><strong>Equip.N: </strong>{{reposi.EquipNumber}}<br>Equip.Owner: </strong>
+              {{reposi.Owner}}<br>Equip.Name:</strong> {{reposi.EquipName}}<br>Owner Tel: </strong>{{reposi.Tel}}<br></strong>{{reposi.date}}</td>
+           
+              <td><button type="menu" class="btn btn-primary">Details</button></td>
+            {%endfor%}
+            {%endfor%}
+            </tr>
+           
         </tbody>
       </table>
+    </div>
 </body>
-
 </html>
 {%endblock%}

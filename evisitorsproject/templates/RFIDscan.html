@@ -9,61 +9,59 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
+
   <title>Registration</title>
-  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
-  <style>
-    h5 {
-      text-align: left;
-      color: black;
-    }
+  
+    
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/RFID.css' %}">
+<link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+{%endblock %}
+<script type="text/javascript">
+  function conf() {
+    var con = confirm("Do you want to submit for sure?");
+  }
+//   function checkTALength(event) {
+//   var text = $(this).val();
+//   if(text.length > 21) {
+//     $(this).addClass('overlimit');
+//   } else {
+//     $(this).removeClass('overlimit');
+//   }
+// }
+// function checkSubmit(event) {
+//   if($('.overlimit', this).length > 0) { return false; }
+// }
 
-    body {
-      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTfQiqlAEdd9W8ZixvOgobPFf1h_GRp9gXvbhD8fGuepZEVmUH_');
-      background-attachment: fixed;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    hr {
-      font-style: bold;
-      color: black;
-
-
-    }
-
-    .container {
-      margin-top: 50px;
-    }
-
-    select {
-      width: 200px;
-      background: lightblue;
-    }
-  </style>
+// $(document).ready(function() {   
+//   $('textarea').change(checkTALength);
+//   $('textarea').keyup(checkTALength);
+//   $('form').submit(checkSubmit);
+// }); 
+</script>
 </head>
 
 <body>
-  <div class="container" style="margin-left: 400px;">
-    <p style="color: white;"> RFID SCANNER</p>
-    <div style="border-style:groove;padding-top: 10px;padding-left: 5px;width: 500px; height: 300px;">
-          <form>
+  <div class="container">
+    <p style="color: white;margin-left: 300px;"> RFID SCANNER</p>
+    <div class="card"
+      style="margin-left:250px;border-radius:20%;width: 600px; padding-left: 40px; padding-right: 40px;padding-top: 20px;padding-bottom: 20px;margin-right: 300px;">
+      <form method="" action="">
+        <button type="button" style="width: 40;height: 40;"><img
+            src="https://cdn.mikroe.com/knowlegebase/uploads/2016/11/04175029/rfid.jpg"
+            style="height: 30px; width: 40px;">
+        </button></a><br><br>
+        {%csrf_token%}
+        <div class="form-group">
 
-            Scan your Card: <input type="text" name="Id scan" style="width:200px">
-            <a href="{% url 'borcodeRead'%}"><button type="button" style="width: 40;height: 40;"><img
-                  src="https://cdn.mikroe.com/knowlegebase/uploads/2016/11/04175029/rfid.jpg"
-                  style="height: 30px; width: 40px;">
-              </button></a><br><br>
-
-          Id Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Id scan" style="width:200px"> <br><br>
-          First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Id scan" style="width:200px"> <br><br>
-          Last Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="Id scan" style="width:200px"><br><br>
-          Tel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="Id scan" style="width:200px"><br><br>
-          <button type="button" class="btn btn-info" name="save">Save</button>
-          </form>
-        </div> 
-        </div>
-      </div>
+          {% bootstrap_form form layout="horizontal" %}
+          <button type="reset" class="btn btn-primary">Reset</button>
+          <button style="color: blue;" class="btn btn-info" type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+  </div>
 </body>
 
 </html>
