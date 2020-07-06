@@ -28,6 +28,7 @@
     }
   </script>
 </head>
+
 <body>
   <div class="container">
     <h5>Welcome to E-visitors Management Portal/ make it simple make it fast
@@ -41,18 +42,18 @@
             style="border-radius:20%;width: 550px; padding-left: 20px; padding-right: 20px;padding-top: 20px;padding-bottom: 20px;">
             <a href="{% url 'borcodeRead'%}"><button type="menu"
                 style="background-image: url('https://www.kdab.com/wp-content/uploads/stories/kdab_qr.png');background-size:cover;width:  40px;height: 40px;margin-right: 20px;"></button></a>
-            <form action="checkNumber(key)" method="post" id="IdNumber">
+            <form action="{%url 'add_visitor'%}" method="post" id="IdNumber">
               {%csrf_token%}
               <div class="form-group">
-                {% bootstrap_form form layout="horizontal" %}
+                {% bootstrap_form v_form layout="horizontal" %}
               </div>
-              <span data-toggle="modal" style="background-color:blanchedalmond;margin-left: 400px;" data-target="#ModalLoginForm"
-                style="margin-right: 20px;" onclick="conf()">Save</span>
+              <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#ModalLoginForm"
+                style="margin-right: 20px;" onclick="conf()">Save</button>
               <button type="reset" class="btn btn-primary">Reset</button>
               <!-- Modal HTML Markup -->
-              
+
               <div id="ModalLoginForm" class="modal fade">
-                
+
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -60,51 +61,23 @@
                     <div class="modal-body">
             </form>
             <h1>Visitor's Equipment</h1>
-            
-              <form role="form" method="POST" action="">
-                <input type="hidden" name="_token" value="">
+
+            <form role="form" method="POST" action="{%url 'ScanEquip'%}">
+              <input type="hidden" name="_token" value="">
+              <div class="form-group">
+                {%csrf_token%}
                 <div class="form-group">
-                  <label class="control-label">Equip. Number</label>
-                  <div>
-                    <input type="text" class="form-control input-lg" name="name" value="">
-                  </div>
+                  {% bootstrap_form Eq_form layout="horizontal" %}
+                  <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#ModalLoginForm"
+                    style="margin-right: 20px;" onclick="conf()">Save</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-                <div class="form-group">
-                  <label class="control-label">Owner</label>
-                  <div>
-                    <input type="text" class="form-control input-lg" name="password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label"></label>Id number</label>
-                  <div>
-                    <input type="text" class="form-control input-lg" name="password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Equip. Name</label>
-                  <div>
-                    <input type="text" class="form-control input-lg" name="password">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="control-label">Tel</label>
-                  <div>
-                    <input type="text" class="form-control input-lg" name="password_confirmation">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div>
-                    <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#ModalLoginForm"
-                      style="margin-right: 20px;" onclick="conf()">Save</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
+        </div>
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
   </form>
   </div>
@@ -115,5 +88,6 @@
   </div>
   </div>
 </body>
+
 </html>
 {%endblock%}

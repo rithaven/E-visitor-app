@@ -25,15 +25,24 @@ def welcome(request):
     return render(request,'welcome.html')
 
 def add_visitor(request):
+    v_form=idScanForm
+    Eq_form=ScanEquipmentForm
     if request.method=="POST":
-        form=idScanForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/viewreport/')
+        v_form=idScanForm(request.POST)
+        if v_form.is_valid():
+           v_form.save()
+           return HttpResponseRedirect('/viewreport/')
     else:
         form=idScanForm()
+    if request.method=="POST":
+        Eq_form=ScanEquipmentForm(request.POST)
+        if Eq_form.is_valid():
+            Eq_form.save()
+            return HttpResponseRedirect('/viewreport/')
+    else:
+        form=ScanEquipmentForm()
     
-    return  render(request,'add_visitor.html',{'form':form})
+    return  render(request,'add_visitor.html',{'v_form':v_form,'Eq_form':Eq_form})
 
      
 def edit_visitor(request, id=None):
