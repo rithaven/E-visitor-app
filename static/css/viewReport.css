@@ -134,3 +134,8 @@ input::-webkit-input-placeholder {
 button{
 width: 70px;
 }
+
+select {
+  width: 200px;
+  background: lightblue;
+}

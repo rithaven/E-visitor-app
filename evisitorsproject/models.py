@@ -9,13 +9,21 @@ from django.core.exceptions import ValidationError
 
 # Create your models here.
 class Idscan(models.Model):
+      StaffRoom='StaffRoom'
+      ComputerLab='ComputerLab'
+      EmployeeRoom='EmployeeRoom'
+      equip_CHOICES = [
+            (StaffRoom, 'StaffRoom'),
+            (ComputerLab, 'ComputerLab'),
+            (EmployeeRoom, 'EmployeeRoom'),
+        
+      ]
       
-      Id_number=models.CharField(max_length=21,null=True,unique=True)
-      First_name=models.CharField(max_length=50,null=True,unique=True)
-      Last_name=models.CharField(max_length=30,null=True,unique=True)
-      place_Of_Isue=models.CharField(max_length=21,null=True,unique=True)
-      Tel=models.CharField(null=True,max_length=21,unique=True)
-      date= models.DateTimeField(auto_now_add=True,null=True)
+      Id_number=models.CharField(max_length=21,null=True)
+      Names=models.CharField(max_length=50,null=True)
+      Destination=models.CharField(max_length=50,null=True,choices=equip_CHOICES,default=StaffRoom)
+      Tel=models.CharField(null=True,max_length=21)
+      date= models.DateTimeField(auto_now_add=True)
 
       def save_visitor(self):
         self.save()
@@ -52,6 +60,23 @@ class Fingerprint(models.Model):
       place_Of_Isue=models.CharField(max_length=21,null=True)
       Tel=models.CharField(null=True,max_length=21)
       date = models.DateTimeField(auto_now_add=True,null=True)
+      def save_visitor(self):
+        self.save()
+      
+
+      @classmethod
+      def todays_visitor(cls):
+        today = dt.date.today()
+        visitors = cls.objects.filter(pub_date__date=today)
+        return vistors
+
+      @classmethod
+      def search_by_Id(cls,search_term):
+        visitors = cls.objects.filter(Idscan__date__icontains=search_term)
+        return visitors
+
+      def __str__(self):
+        return str(self. Id_number)
 
 class Rfidscan(models.Model):
       RFId_number=models.CharField(null=True,max_length=21)
@@ -60,6 +85,23 @@ class Rfidscan(models.Model):
       place_Of_Isue=models.CharField(max_length=21,null=True)
       Tel=models.CharField(null=True,max_length=21)
       date = models.DateTimeField(auto_now_add=True,null=True)
+      def save_visitor(self):
+        self.save()
+      
+
+      @classmethod
+      def todays_visitor(cls):
+        today = dt.date.today()
+        visitors = cls.objects.filter(pub_date__date=today)
+        return vistors
+
+      @classmethod
+      def search_by_Id(cls,search_term):
+        visitors = cls.objects.filter(Idscan__date__icontains=search_term)
+        return visitors
+
+      def __str__(self):
+        return str(self. Id_number)
 
 class Facerecognation(models.Model):
       

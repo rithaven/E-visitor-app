@@ -60,15 +60,41 @@
       <button type="menu"
               style="background-image: url('https://www.kdab.com/wp-content/uploads/stories/kdab_qr.png');background-size:cover;width:  40px;height: 40px;margin-right: 20px;"></button></a>
             </p>
-      <form mothod="POST">
-        {%csrf_token%}
-        {% bootstrap_form form layout="horizontal" %}
-          <button type="reset" class="btn btn-primary">Reset</button>
-          <button style="color: blue;" class="btn btn-info" type="submit">Save</button>
-      </form>
-    </div>
-  </div>
-  
-</body>
-</html>
-{%endblock%}
+            <form action="{%url 'fingerPrint'%}" method="post" id="IdNumber">
+              {%csrf_token%}
+              <div class="form-group">
+                {% bootstrap_form finger_form layout="horizontal" %}
+              </div>
+              <button class="btn btn-info" type="submit" onclick="conf()">Save</button>
+              <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#ModalLoginForm"
+                style="margin-right: 20px;">Scan Equipment</button>
+              <!-- Modal HTML Markup -->
+    
+              <div id="ModalLoginForm" class="modal fade">
+    
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                    </div>
+                    <div class="modal-body">
+            </form>
+            <h1>Visitor's Equipment</h1>
+    
+            <form role="form" method="POST" action="{%url 'ScanEquip'%}">
+              <input type="hidden" name="_token" value="">
+              <div class="form-group">
+                {%csrf_token%}
+                <div class="form-group">
+                  {% bootstrap_form Equip_form layout="horizontal" %}
+                  <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#ModalLoginForm"
+                    style="margin-right: 20px;" onclick="conf()">Save</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+     
+    </body>
+    </html>
+    {%endblock%}

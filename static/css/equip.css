@@ -42,3 +42,9 @@
         margin-left: 0;
         margin-right: 0;
     }
+
+    select {
+        width: 200px;
+        background: lightblue;
+      }
+   

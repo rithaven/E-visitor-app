@@ -20,6 +20,7 @@ import time
 
 continue_reading = True
 # Create your views here.
+
 def welcome(request):
 
     return render(request,'welcome.html')
@@ -81,36 +82,107 @@ def search(request):
    
 
 def fingerPrint(request):
+    finger_form=FingerprintForm
+    Equip_form=ScanEquipmentForm
     if request.method=="POST":
-        form=FingerprintForm(request.POST)
-        if form.is_valid():
-            form.save()
+        finger_form=FingerprintForm(request.POST)
+        if  finger_form.is_valid():
+            finger_form.save()
             return HttpResponseRedirect('/viewreport/')
     else:
-        form=FingerprintForm()
+        finger_form=FingerprintForm()
+    if request.method=="POST":
+        Equip_form=ScanEquipmentForm(request.POST)
+        if Equip_form.is_valid():
+            Equip_form.save()
+            return HttpResponseRedirect('/viewreport/')
+    else:
+        Equip_form=ScanEquipmentForm()
     
-    return  render(request,'fingerPrint.html',{'form':form})
+    return  render(request,'fingerPrint.html',{'finger_form':finger_form,'Equip_form':Equip_form})
+    # finger_form=FingerprintForm
+    # Eq_form=ScanEquipmentForm
+    # if request.method=="POST":
+    #     finger_form=FingerprintForm(request.POST)
+    #     if  finger_form.is_valid():
+    #         finger_form.save()
+    #         return HttpResponseRedirect('/viewreport/')
+    # else:
+    #     form=FingerprintForm()
+    # if request.method=="POST":
+    #     Eq_form=ScanEquipmentForm(request.POST)
+    #     if Eq_form.is_valid():
+    #         Eq_form.save()
+    #         return HttpResponseRedirect('/viewreport/')
+    # else:
+    #     form=ScanEquipmentForm()
+    
+    # return  render(request,'fingerPrint.html',{'finger_form':finger_form,'Eq_form':Eq_form})
 
 
 def rfidScan(request):
+    rf_form=FingerprintForm
+    Equipm_form=ScanEquipmentForm
     if request.method=="POST":
-        form=FingerprintForm(request.POST)
-        if form.is_valid():
-            form.save()
+        rf_form=RfidscanForm(request.POST)
+        if  rf_form.is_valid():
+           rf_form.save()
+           return HttpResponseRedirect('/viewreport/')
+    else:
+        rf_form=RfidscanForm()
+    if request.method=="POST":
+        Equipm_form=ScanEquipmentForm(request.POST)
+        if Equipm_form.is_valid():
+            Equipm_form.save()
             return HttpResponseRedirect('/viewreport/')
     else:
-        form=FingerprintForm()
-    return  render(request,'RFIDscan.html',{'form':form})
+        Equipm_form=ScanEquipmentForm()
+    
+    return  render(request,'RFIDscan.html',{'rf_form':rf_form,'Equipm_form':Equipm_form})
+    # RFID_form=RfidscanForm
+    # equip_form=ScanEquipmentForm
+    # if request.method=="POST":
+    #     RFID_form=RfidscanForm(request.POST)
+    #     if RFID_form.is_valid():
+    #        RFID_form.save()
+    #        return HttpResponseRedirect('/viewreport/')
+    # else:
+    #    RFID_form=RfidscanForm()
+
+    # if request.method=="POST":
+    #     equip_form=ScanEquipmentForm(request.POST)
+    #     if equip_form.is_valid():
+    #         equip_form.save()
+    #         return HttpResponseRedirect('/viewreport/')
+    # else:
+    #     equip_form=ScanEquipmentForm()
+    
+    # return  render(request,'RFIDscan.html',{'RFID_form':RFID_form,'equip_form':equip_form})
+  
+
+   
     
 def faceRecognation(request):
+    face_form=FacerecognationForm
+    Equipment_form=ScanEquipmentForm
     if request.method=="POST":
-        form= FacerecognationForm(request.POST)
-        if form.is_valid():
-            form.save()
+        face_form=FacerecognationForm(request.POST)
+        if  rf_form.is_valid():
+           rf_form.save()
+           return HttpResponseRedirect('/viewreport/')
+    else:
+        face_form=FacerecognationForm()
+    if request.method=="POST":
+        Equipment_form=ScanEquipmentForm(request.POST)
+        if Equipment_form.is_valid():
+            Equipment_form.save()
             return HttpResponseRedirect('/viewreport/')
     else:
-        form=FacerecognationForm()
-    return  render(request,'faceRecognation.html',{'form':form})   
+        Equipment_form=ScanEquipmentForm()
+    
+    
+    return  render(request,'faceRecognation.html',{'face_form':face_form,'Equipment_form':Equipment_form})
+  
 
 def ScanEquip(request):
     if request.method=="POST":
