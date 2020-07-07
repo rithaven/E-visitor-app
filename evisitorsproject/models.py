@@ -22,8 +22,8 @@ class Idscan(models.Model):
       Id_number=models.CharField(max_length=21,null=True)
       Names=models.CharField(max_length=50,null=True)
       Destination=models.CharField(max_length=50,null=True,choices=equip_CHOICES,default=StaffRoom)
-      Tel=models.CharField(null=True,max_length=21)
-      date= models.DateTimeField(auto_now_add=True)
+      Tel=models.CharField(max_length=21,null=True)
+      date= models.DateTimeField(auto_now_add=True,null=True)
 
       def save_visitor(self):
         self.save()
@@ -54,12 +54,22 @@ class VisitorInfo(models.Model):
       propertyname=models.CharField(max_length=30,null=True)
 
 class Fingerprint(models.Model):
-      Id_number=models.CharField(null=True,max_length=21)
-      First_name=models.CharField(max_length=50, null=True)
-      Last_name=models.CharField(max_length=30,null=True)
-      place_Of_Isue=models.CharField(max_length=21,null=True)
+      StaffRoom='StaffRoom'
+      ComputerLab='ComputerLab'
+      EmployeeRoom='EmployeeRoom'
+      equip_CHOICES = [
+            (StaffRoom, 'StaffRoom'),
+            (ComputerLab, 'ComputerLab'),
+            (EmployeeRoom, 'EmployeeRoom'),
+        
+      ]
+      
+      Id_number=models.CharField(max_length=21,null=True)
+      Names=models.CharField(max_length=50,null=True)
+      Destination=models.CharField(max_length=50,null=True,choices=equip_CHOICES,default=StaffRoom)
       Tel=models.CharField(null=True,max_length=21)
-      date = models.DateTimeField(auto_now_add=True,null=True)
+      date= models.DateTimeField(auto_now_add=True,null=True)
+
       def save_visitor(self):
         self.save()
       
@@ -80,9 +90,7 @@ class Fingerprint(models.Model):
 
 class Rfidscan(models.Model):
       RFId_number=models.CharField(null=True,max_length=21)
-      First_name=models.CharField(max_length=50, null=True)
-      Last_name=models.CharField(max_length=30,null=True)
-      place_Of_Isue=models.CharField(max_length=21,null=True)
+      Names=models.CharField(max_length=50, null=True)
       Tel=models.CharField(null=True,max_length=21)
       date = models.DateTimeField(auto_now_add=True,null=True)
       def save_visitor(self):
@@ -107,9 +115,7 @@ class Facerecognation(models.Model):
       
       # face_image=models.ImageField(upload_to ='viewReport/',null=True)
       Id_number=models.CharField(null=True,max_length=21)
-      First_name=models.CharField(max_length=50, null=True)
-      Last_name=models.CharField(max_length=30,null=True)
-      place_Of_Isue=models.CharField(max_length=21,null=True)
+      Names=models.CharField(max_length=50, null=True)
       Tel=models.CharField(null=True,max_length=21)
       date = models.DateTimeField(auto_now_add=True,null=True)
 

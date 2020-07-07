@@ -12,7 +12,7 @@
 
 <head>
   <title>View Report</title>
-  
+
 
 
   {% block styles %}
@@ -26,14 +26,14 @@
   <h1 class='text-center'
     style="margin-bottom:5%;margin-top:3%; color: rgb(219, 223, 235);font-family: 'Playfair Display', serif;" id="text">
     View Report Portal</h1>
-  <form style="margin-left:500px" method="GET" role="search" action="{% url 'search' %}">
-    <input type="search" name="srh"placeholder="Search by Date">
+  <form style="margin-left:500px" method="GET" role="search" action="/searchbar/">
+    <input type="search" name="srh" placeholder="Search by ID number">
   </form>
   <div class="row" style="margin-top: 3%; margin-left: 3%">
     <div class="col">
       <h1>Recorded Data</h1>
       <hr>
-      <table border="5">
+      <table border="1">
         <thead>
           <tr>
             <th scope="col">Visitor Identifications</th>
@@ -47,18 +47,40 @@
 
           <tr>
             <td><strong> ID:</strong> {{repos.Id_number}},<img src="{{repos.face_image.url}}"
-                class="img-responsive"><br><strong>FirstName:</strong> {{repos.Names}}<br><strong> <strong> Tel: </strong>{{repos.Tel}}<br>Tel: </strong>{{repos.Department}}<br><strong>Date:</strong>{{repos.date}}</td>
+                class="img-responsive"><br><strong>FirstName:</strong> {{repos.Names}}<br><strong> <strong> Tel:
+                </strong>{{repos.Tel}}<br></strong>{{repos.Destination}}<br><strong>Date:</strong>{{repos.date}}</td>
             <td><strong>Equip.N: </strong>{{reposi.EquipNumber}}<br>Equip.Owner: </strong>
-              {{reposi.Owner}}<br>Equip.Name:</strong> {{reposi.EquipName}}<br>Owner Tel: </strong>{{reposi.Tel}}<br></strong>{{reposi.date}}</td>
-           
-              <td><button type="menu" class="btn btn-primary">Details</button></td>
-            {%endfor%}
-            {%endfor%}
-            </tr>
-           
+              {{reposi.Owner}}<br>Equip.Name:</strong> {{reposi.EquipName}}<br>
+              </strong>Tel:{{reposi.Tel}}<br></strong>{{reposi.date}}</td>
+              <td><button type="menu" class="btn btn-primary" data-toggle="modal" data-target="#ModalLoginForm">Details</button></td>
+ 
+            <div id="ModalLoginForm" class="modal fade">
+
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                  <center><strong> All Details</strong></center> 
+                  </div>
+                  <div class="modal-body">
+                  <p>  ID Numbe:{{repos.Id_number}}</p>
+                   <p> Names: {{repos.Names}}</p>
+                   <p> Tel:{{repos.Tel}}</p>
+                    <p>Destination: {{repos.Destination}}</p>
+                    <p>Equipment Name:{{reposi.EquipName}}</p>
+                    <p>Date: {{reposi.date}}</p>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                {%endfor%}
+                {%endfor%}
+          </tr>
         </tbody>
       </table>
     </div>
 </body>
+
 </html>
 {%endblock%}

@@ -65,18 +65,24 @@ def viewReport(request):
     viewReportK=Registration.objects.all().order_by('-date')
     return render (request, 'viewReport.html',{'viewReport':viewReport,'viewReportE':viewReportE,'viewReportF':viewReportF,'viewReportG':viewReportG,'viewReportH':viewReportH,'viewReportH':viewReportH,'viewReportI':viewReportI,'viewReportK':viewReportK})
 
-def search(request):
-    if request.method=='POST':
-        srch=request.POST['srh']
-        if srch:
-            match=Idscan.objects.filter(Q(date__icontains=srch))
-            if match:
-                return render(request,'search.html',{'sr':match})
-            else:
-                message.error(request,'no result found')
-        else:
-            return HttpResponseRedirect('/search/')
-    return render(request,'search.html')
+def searchbar(request):
+    # if request.method=='POST':
+    #     srch=request.POST['srh']
+    #     if srch:
+    #         match:Idscan.objects.filter(Q(Id_number__icontains=srch)| Q(Names__icontains=srch))
+    #         if match:
+    #             return render(request,'search.html',{'sr':match})
+    #         else:
+    #             messages.error(request,'no result found')
+    #     else:
+    #         return HttpResponseRedirect('searchbar')
+    # return render(request,'search.html')
+
+    if request.method=='GET':
+        search=request.GET.get('search')
+        post1=Idscan.objects.all().filter(Id_number=search).order_by('-date')
+        post2=ScanEquipment.objects.all().filter(Id_number=search).order_by('-date')
+    return render(request,'search.html',{'post1':post1,'post2':post2})
           
 
    

@@ -1,43 +1,85 @@
 {%extends 'base.html'%}
 {% block content %}
-<div class="container">
+{{block.super}}
+{% load bootstrap4 %}
+{% load staticfiles %}
 
-  <div class="row">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-    {% if messages %}
-    <ul class="messages">
-      {% for k in messages%}
-      <li style="color: green;">{{ k }}</li>
-      {%endfor%}
+<head>
+  <title>View Report</title>
+
+
+
+  {% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/viewReport.css' %}">
+  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+  {%endblock %}
+</head>
+
+<body>
+  <h1 class='text-center'
+    style="margin-bottom:5%;margin-top:3%; color: rgb(219, 223, 235);font-family: 'Playfair Display', serif;" id="text">
+    View Report Portal</h1>
+
+  {% if post1 %}
+  <div class="container">
+    <center>
+      <h1>Search result</h1>
+    </center>
+    <br>
+
+    <a href="/viewReport/{{k.Id_number}}" style="text-decoration: none; color: black;">
+      <h1>Recorded Data</h1>
+      {% for m in post1%}
+      {% for s in post2%}
+      <hr>
+      <div class="row" style="margin-top: 3%; margin-left: 3%">
+        <div class="col">
+          <table border="1">
+            <thead>
+              <tr>
+                <th scope="col">Visitor ID</th>
+                <th scope="col"> Names</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Telephone number</th>
+                <th scope="col">Date</th>
+                <th scope="col">Equipment Number</th>
+                <th scope="col">Equipment Name</th>
+               
+
+              </tr>
+            </thead>
+            <tbody>
+             
+
+              <tr>
+                <td><strong>  {{m.Id_number}}<strong></td>
+                <td> </strong> {{m.Names}}</td>
+                <td><strong>{{m.Destination}}</strong></td>
+                <td></strong>{{s.Tel}}</td>
+                <td></strong>{{m.date}}</td>
+                <td> </strong>{{s.EquipNumber}}</td>
+                <td></strong> {{s.EquipName}}</td>
+                </tr>
+    </a>
+
+
+    {%endfor%}
+    {%endfor%}
+
+    {%else%}
+    <center>Nothing Found</center>
     </ul>
     {% endif %}
-
-
-    
-    <table>
-      {% if sr %}
-      {% for k in sr%}
-      <thead>
-        <tr>
-          <th scope="col">Visitor Identifications</th>
-          <th scope="col">Property Details</th>
-          <th scope="col">Date</th>
-          <th scope="col">view</th>
-        </tr>
-      </thead>
-      <tbody>
-       
-         <tr>
-           <td><strong> ID:</strong> {{k.Id_number}},<img src="{{repos.face_image.url}}"
-               class="img-responsive"><br><strong>FirstName:</strong> {{k.First_name}}<br><strong> Last
-               Name:</strong>{{k.Last_name}}<br><strong>Place of
-               Isue/ID:</strong>{{k.place_Of_Isue}}<br><strong> Tel: </strong>{{k.Tel}}<br><strong>Date:</strong>{{k.date}}</td>
-             <td><button type="menu" class="btn btn-primary">Details</button></td>
-           {%endfor%}
-           {%endif%}
-      </tbody>
+    </tbody>
     </table>
-
   </div>
-</div>
+  </div>
+  </div>
+</body>
+
+</html>
 {% endblock %}
