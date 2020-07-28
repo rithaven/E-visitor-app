@@ -10,7 +10,7 @@ from django.core.exceptions import ValidationError
 # Create your models here.
 class Idscan(models.Model):
       
-      Id_number=models.CharField(max_length =21,null=True)
+      Id_number=models.CharField(max_length =500,null=True)
       date= models.DateTimeField(auto_now_add=True,null=True)
  
       def save_visitor(self):

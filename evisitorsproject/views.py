@@ -114,7 +114,7 @@ def searchbar(request):
     if request.method=='GET':
         search=request.GET.get('search')
         post1=Idscan.objects.all().filter(Id_number=search).order_by('-date')
-        post2=ScanEquipment.objects.all().filter(Id_number=search).order_by('-date')
+        post2=ScanEquipment.objects.all().filter(date=search).order_by('-date')
     return render(request,'search.html',{'post1':post1})
           
 
