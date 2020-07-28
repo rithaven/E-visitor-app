@@ -17,6 +17,7 @@
 
   {% block styles %}
   {% bootstrap_css %}
+
   <link rel="stylesheet" href="{% static 'css/viewReport.css' %}">
   <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
   {%endblock %}
@@ -24,21 +25,32 @@
 
 <body>
   <h1 class='text-center'
-    style="margin-bottom:5%;margin-top:3%; color: rgb(219, 223, 235);font-family: 'Playfair Display', serif;" id="text">
-    View Report Portal</h1>
-  <form style="margin-left:500px" method="GET" role="search" action="/searchbar/">
-    <input type="search" name="srh" placeholder="Search by ID number">
-  </form>
-  <div class="row" style="margin-top: 3%; margin-left: 3%">
+    style="margin-bottom:5%; margin-top: 5px; color: rgb(219, 223, 235);font-family: 'Playfair Display', serif;" id="text">
+    View Report Portal</h1><a href="{%url 'RegisterEqipment'%}"><button style="width: 50px;float:top;">Back</button></a></h1>
+
+  <div class="row">
     <div class="col">
-      <h1>Recorded Data</h1>
-      <hr>
+  
+      <form  method="GET" role="search" action="/searchbar/" style="margin-left: 1000px;">
+       <strong> Search by ID </strong><input type="search" name="srh" placeholder="Search by ID number" style="background:sliva;">
+       </form>
       <table border="1">
         <thead>
+          
           <tr>
-            <th scope="col">Visitor Identifications</th>
-            <th scope="col">Property Details</th>
-            <th scope="col">view Details</th>
+           
+            <th scope="col" style="width: 100px;">Entries  &  Exits </th>
+            <th scope="col" style="width: 100px;">ID Number</th>
+            <th scope="col" style="width: 100px;" >Names</th>
+            <th scope="col" style="width: 100px;">Destination</th>
+            <th scope="col" style="width: 100px;">Equip.number</th>
+            <th scope="col" style="width: 100px;">Equip.Owner</th>
+            <th scope="col" style="width: 100px;">Equip.name</th>
+            <th scope="col" style="width: 100px;">Phone number</th>
+            <th scope="col" style="width: 100px;">Date</th>
+            <th scope="col" style="width: 100px">Details</th>
+
+          
           </tr>
         </thead>
         <tbody>
@@ -46,36 +58,41 @@
           {%for reposi in viewReportE%}
 
           <tr>
-            <td><strong> ID:</strong> {{repos.Id_number}},<img src="{{repos.face_image.url}}"
-                class="img-responsive"><br><strong>FirstName:</strong> {{repos.Names}}<br><strong> <strong> Tel:
-                </strong>{{repos.Tel}}<br></strong>{{repos.Destination}}<br><strong>Date:</strong>{{repos.date}}</td>
-            <td><strong>Equip.N: </strong>{{reposi.EquipNumber}}<br>Equip.Owner: </strong>
-              {{reposi.Owner}}<br>Equip.Name:</strong> {{reposi.EquipName}}<br>
-              </strong>Tel:{{reposi.Tel}}<br></strong>{{reposi.date}}</td>
-              <td><button type="menu" class="btn btn-primary" data-toggle="modal" data-target="#ModalLoginForm">Details</button></td>
- 
+            <td><i class="fa fa-id-badge" aria-hidden="true" style="color: green;">{{cou}}</i></td>
+            <td>{{repos.Id_number}}</td>
+            <td> {{reposi.Names}}</td>
+            <td>{{reposi.Destination}}</td>
+            <td>{{reposi.EquipNumber}}</td>
+            <td>{{reposi.Owner}}</td>
+            <td>{{reposi.EquipName}}</td>
+            <td>{{reposi.Tel}}</td>
+            <td>{{repos.date}}</td>
+            <td><button type="menu" class="btn btn-primary" data-toggle="modal"
+                data-target="#ModalLoginForm">Details</button></td>
+
             <div id="ModalLoginForm" class="modal fade">
 
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                  <center><strong> All Details</strong></center> 
+                    <center><strong> All Details</strong></center>
                   </div>
                   <div class="modal-body">
-                  <p>  ID Numbe:{{repos.Id_number}}</p>
-                   <p> Names: {{repos.Names}}</p>
-                   <p> Tel:{{repos.Tel}}</p>
-                    <p>Destination: {{repos.Destination}}</p>
+                    <p> ID Numbe:{{repos.Id_number}}</p>
+                    <p> Names: {{reposi.Names}}</p>
+                    <p> Tel:{{reposi.Tel}}</p>
+                    <p>Destination: {{reposi.Destination}}</p>
                     <p>Equipment Name:{{reposi.EquipName}}</p>
                     <p>Date: {{reposi.date}}</p>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </form>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Print</button>
                   </div>
                 </div>
-                {%endfor%}
-                {%endfor%}
+                </form>
+              </div>
+            </div>
+            {%endfor%}
+            {%endfor%}
           </tr>
         </tbody>
       </table>

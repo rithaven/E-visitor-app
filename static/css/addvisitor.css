@@ -4,10 +4,11 @@ h5 {
   }
 
   body {
-    background: url('../images/bac.png');
+    background: url('../images/whiteback.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
+    opacity: 0.1px;
   }
 
   hr {

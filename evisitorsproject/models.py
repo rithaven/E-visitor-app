@@ -9,22 +9,10 @@ from django.core.exceptions import ValidationError
 
 # Create your models here.
 class Idscan(models.Model):
-      StaffRoom='StaffRoom'
-      ComputerLab='ComputerLab'
-      EmployeeRoom='EmployeeRoom'
-      equip_CHOICES = [
-            (StaffRoom, 'StaffRoom'),
-            (ComputerLab, 'ComputerLab'),
-            (EmployeeRoom, 'EmployeeRoom'),
-        
-      ]
       
-      Id_number=models.CharField(max_length=21,null=True)
-      Names=models.CharField(max_length=50,null=True)
-      Destination=models.CharField(max_length=50,null=True,choices=equip_CHOICES,default=StaffRoom)
-      Tel=models.CharField(max_length=21,null=True)
+      Id_number=models.CharField(max_length =21,null=True)
       date= models.DateTimeField(auto_now_add=True,null=True)
-
+ 
       def save_visitor(self):
         self.save()
       
@@ -127,19 +115,22 @@ class Facerecognation(models.Model):
 class  ScanEquipment(models.Model):
       Laptop ='Laptop'
       Tablet='Tablet'
+      none='none'
       DestopMachine='DestopMachine'
       equip_CHOICES = [
             (Laptop, 'Laptop'),
             (Tablet, 'Tablet'),
             (DestopMachine, 'DestopMachine'),
+            (none,'none'),
         
       ]
       
-      EquipNumber =models.CharField(max_length=30,null=True)
-      Owner=models.CharField(max_length=30,null=True)
-      Id_number=models.CharField(null=True,max_length=21)
-      EquipName=models.CharField(max_length=30,null=True,choices=equip_CHOICES ,
-        default=Laptop)
+      EquipNumber =models.CharField(max_length=100,null=True)
+      Names=models.CharField(max_length=100,null=True)
+      EquipName=models.CharField(max_length=20,null=True,choices=equip_CHOICES ,
+        default=none)
+      Destination= models.CharField(max_length=30,null=True)
+      Owner= models.CharField(max_length=30,null=True)
       Tel= models.CharField(max_length=30,null=True)
       date= models.DateTimeField(auto_now_add=True,null=True)
 

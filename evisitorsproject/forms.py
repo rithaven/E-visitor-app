@@ -8,6 +8,7 @@ class idScanForm(ModelForm):
       class Meta:
             model= Idscan
             fields='__all__'
+           
      
 class FacerecognationForm(ModelForm):
       class Meta:

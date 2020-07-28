@@ -11,6 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+  <link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet">
   {% block styles %}
   {% bootstrap_css %}
   <link rel="stylesheet" href="{% static 'css/welcom.css' %}">
@@ -18,8 +19,15 @@
   {%endblock %}
 </head>
 <body>
+  <br>
+  <div class="row">
+    <marquee width = "50%"><p style="margin-left: 40px;"> This System is for any institution that need control for visitors and employee to gather information for future use and to ensure the safety and security of employees and visitors .</p></marquee>
+    <marquee width = "50%" direction = "right"><p style="margin-left: 10px;"> This System is for any institution that need control for visitors and employee to gather information for future use this System is for any institution that need control for visitors.</p></marquee>
+
+  </div>
   <div class="container" style="margin-top: 15px;margin-left: 10px;">
-    <br>
+   
+  
     <br>
     <br>
     <br>
@@ -44,10 +52,35 @@
         <a href="{%url 'ScanEquip'%}"> <button type="button" class="btn btn-primary">Scan Equipment</button>
       </div>
       <div class="col">
-        <a href="{%url 'RegisterEqipment'%}"> <button type="button" class="btn btn-primary">Registration</button></a>
+        <a href="{%url 'RegisterEqipment'%}"> <button type="button" class="btn btn-primary">Contral</button></a>
       </div>
     </div>
   </div>
+  <br>
+  <br>
+  
+  <footer style="background: #142b47;color:blanchedalmond;">
+  <div class="row" style="margin-left: 50px;">
+    <div class="col">
+      <p><img src="https://img.icons8.com/bubbles/50/000000/apple-arcade.png"/>Facility managers should have some understanding and control over who is entering and exiting their buildings at all times</p>
+    </div>
+    <div class="col">
+      <p><img src="https://img.icons8.com/bubbles/50/000000/mac-logo.png"/>The attention of facility managers to ensure the safety and security of employees and visitors from emergencies  and legal.</p>
+    </div>
+    <div class="col">
+      <p><img src="https://img.icons8.com/bubbles/50/000000/notes-app.png"/>A visitor management system is important because having such control is a deterrent for those individuals  considering </p>
+    </div>
+    <div class="col">
+      <p><img src="https://img.icons8.com/clouds/50/000000/notes-app.png"/>it is not reasonable to deploy an access control system to prevent or regulate the entrance of the general public.</p>
+    </div>
+    <div class="col">
+      <p><img src="https://img.icons8.com/bubbles/50/000000/notes-app.png"/>These intentions can range from harassment, theft, vandalism, and violence. Unfortunately, in some cases, after an event.</p>
+    </div>
+    <div class="col">
+      <p><img src="https://img.icons8.com/bubbles/50/000000/photo-booth-app.png"/>Among the different considerations, facility managers need to review the importance of safety and security</p>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
 {%endblock%}

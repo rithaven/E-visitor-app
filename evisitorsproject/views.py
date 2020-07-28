@@ -7,6 +7,7 @@ from .forms import idScanForm,FacerecognationForm,ScanEquipmentForm,FingerprintF
 from .models import Idscan,ScanEquipment,Facerecognation,Rfidscan,Fingerprint,Registration
 from django.conf import settings
 from . import models
+from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
@@ -26,25 +27,56 @@ def welcome(request):
     return render(request,'welcome.html')
 
 def add_visitor(request):
-    v_form=idScanForm
-    Eq_form=ScanEquipmentForm
-    if request.method=="POST":
-        v_form=idScanForm(request.POST)
-        if v_form.is_valid():
-           v_form.save()
-           return HttpResponseRedirect('/viewreport/')
-    else:
-        form=idScanForm()
-    if request.method=="POST":
-        Eq_form=ScanEquipmentForm(request.POST)
-        if Eq_form.is_valid():
-            Eq_form.save()
-            return HttpResponseRedirect('/viewreport/')
-    else:
-        form=ScanEquipmentForm()
-    
-    return  render(request,'add_visitor.html',{'v_form':v_form,'Eq_form':Eq_form})
+    # my_file =  open("127.0.0.1/add_visitor/test.txt", 'r') 
+    # response = HttpResponse(my_file.read(), mimetype='text/plain')
+    # response['Content-Disposition'] = 'inline;filename=some_file.txt'
+    # print(response)
+    # handle = open("","r")
 
+    # data = str(handle.readline())
+    # print(data[0:21])
+    # handle.close()
+    form=idScanForm
+    formI=ScanEquipmentForm
+    if request.is_ajax():
+        form=idScanForm(request.POST)
+        formI=ScanEquipmentForm(request.POST)
+        if form.is_valid():
+            instance=form.save(commit=False)
+            instance.save()
+            data={
+                'message':'form is saved'
+            }
+        if formI.is_valid():
+            instance=formI.save(commit=False)
+            instance.save()
+            data={
+                'message':'form is saved'
+            }
+            return JsonResponse(data)
+    context={
+    'form':form,'formI':formI
+    }
+    return  render(request,'add_visitor.html',context)
+
+    # if request.method=="POST":
+    #     v_form=idScanForm(request.POST)
+    #     if v_form.is_valid():
+    #        v_form.save()
+    #        return HttpResponseRedirect('/viewreport/')
+    # else:
+    #     form=idScanForm()
+    # if request.method=="POST":
+    #     Eq_form=ScanEquipmentForm(request.POST)
+    #     if Eq_form.is_valid():
+    #         Eq_form.save()
+    #         return HttpResponseRedirect('/viewreport/')
+    # else:
+    #     form=ScanEquipmentForm()
+    # data = {'success': 'You have been successfully added recorded data!!'}
+    
+    # return  render(request,'add_visitor.html',{'v_form':v_form,'Eq_form':Eq_form})
+    # return JsonResponse(data) 
      
 def edit_visitor(request, id=None):
     item= get_object_or_404(Idscan,id=id)
@@ -56,6 +88,7 @@ def edit_visitor(request, id=None):
 
 @login_required(login_url='/accounts/login/')
 def viewReport(request):
+    cou=Idscan.objects.get(id=2)
     viewReport=Idscan.objects.all().order_by('-date')
     viewReportE=ScanEquipment.objects.all().order_by('-date')
     viewReportF=Fingerprint.objects.all().order_by('-date')
@@ -63,7 +96,7 @@ def viewReport(request):
     viewReportH=Facerecognation.objects.all().order_by('-date')
     viewReportI=ScanEquipment.objects.all().order_by('-date')
     viewReportK=Registration.objects.all().order_by('-date')
-    return render (request, 'viewReport.html',{'viewReport':viewReport,'viewReportE':viewReportE,'viewReportF':viewReportF,'viewReportG':viewReportG,'viewReportH':viewReportH,'viewReportH':viewReportH,'viewReportI':viewReportI,'viewReportK':viewReportK})
+    return render (request, 'viewReport.html',{'viewReport':viewReport,'viewReportE':viewReportE,'viewReportF':viewReportF,'viewReportG':viewReportG,'viewReportH':viewReportH,'viewReportH':viewReportH,'viewReportI':viewReportI,'viewReportK':viewReportK,'cou':cou})
 
 def searchbar(request):
     # if request.method=='POST':
@@ -82,7 +115,7 @@ def searchbar(request):
         search=request.GET.get('search')
         post1=Idscan.objects.all().filter(Id_number=search).order_by('-date')
         post2=ScanEquipment.objects.all().filter(Id_number=search).order_by('-date')
-    return render(request,'search.html',{'post1':post1,'post2':post2})
+    return render(request,'search.html',{'post1':post1})
           
 
    
@@ -192,15 +225,19 @@ def faceRecognation(request):
 
 def ScanEquip(request):
     if request.method=="POST":
-        form=ScanEquipmentForm(request.POST)
-        if form.is_valid():
-            form.save()
+        s_form=ScanEquipmentForm(request.POST)
+        if s_form.is_valid():
+            s_form.save()
             return HttpResponseRedirect('/viewreport/')
     else:
-        form=ScanEquipmentForm()
+        s_form=ScanEquipmentForm()
     
-    return  render(request,'ScanEquip.html',{'form':form})
-
+    return  render(request,'ScanEquip.html',{'s_form':s_form})
+# def updateVisitor(request,pk):
+#     visita=Idscan.objects.get(id=pk)
+#     form=idScanForm(instance=visita)
+#     context={'form':form}
+#     return render(request,'ScanEquip.htm',context)
 @login_required(login_url='/accounts/login/')
 def RegisterEqipment(request):
     if request.method=="POST":

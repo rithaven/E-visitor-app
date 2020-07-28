@@ -10,75 +10,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Recursive&display=swap" rel="stylesheet">
   {% block styles %}
   {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/visitor.css' %}">
+  <link rel="stylesheet" href="{% static 'css/addvisitor.css' %}">
   <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
   {%endblock %}
-  
-    <script type="text/javascript">
-    function conf() {
-      var con = confirm("DO YOU HAVE EQUIPMENT?");
-    }
-  </script>
+  {% block scripts %} {{block.super}}
+  <script type="text/javascript" src="{%static 'js/visitor.js'%}"></script>
+  {% endblock %}
+
 </head>
 
-<body>
+<body style="font-family: 'Recursive', sans-serif;">
   <div class="container">
-    <h5>Welcome to E-visitors Management Portal/ make it simple make it fast
-    </h5>
-    <hr style="width: 520px; float: center;margin-right:300px" size="30px">
+    <h2>Welcome to E-visitors Management Portal/ make it simple & fast
+    </h2>
+
+    <hr style="width: 520px; float: center;margin-right:300px" size="50px">
     <br><br>
-    <strong style="margin-left: 250px;"><i> we value your Id, Time and Property </i>
-      <div class="row">
-        <div class="col" style="margin-left: 300px;">
-          <div class="card"
-            style="border-radius:20%;width: 550px; padding-left: 20px; padding-right: 20px;padding-top: 20px;padding-bottom: 20px;">
-            <a href="{% url 'borcodeRead'%}"><button type="menu"
-                style="background-image: url('https://www.kdab.com/wp-content/uploads/stories/kdab_qr.png');background-size:cover;width:  40px;height: 40px;margin-right: 20px;"></button></a>
-            <form action="{%url 'add_visitor'%}" method="post" id="IdNumber">
+    <strong style="margin-left: 295px; font-size: 30px;"><i> we value your Id, Time and Property </i></strong>
+    <div class="row">
+      <div class="col" style="margin-left: 300px;">
+        <div class="card"
+          style="border-radius:3%;width: 550px; background-color:rgb(1, 27, 56);padding-left: 20px; padding-right: 20px;padding-top: 20px;padding-bottom: 20px;">
+          <a href="{% url 'borcodeRead'%}"><button type="menu"
+              style="background-image: url('https://www.kdab.com/wp-content/uploads/stories/kdab_qr.png');background-size:cover;width:  40px;height: 40px;margin-right: 20px;"></button></a>
+          <form action="{%url 'add_visitor'%}" method="post" id="dialog" title="Enter ID number and press Enter button "
+            style="color: white;" class="my-ajax-form">
+            {%csrf_token%}
+            <div class="form-group" id="text_tag_input">
+              {% bootstrap_form form layout="horizontal" %}
+            </div>  
+            <!-- <a href="{% url 'ScanEquip'%}"></a> -->
+           <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#ModalLoginForm" onclick="conf()"
+                style="margin-left: 450px;"> Save</button>
+ 
+            <!-- Modal HTML Markup -->
+
+            <div id="ModalLoginForm" class="modal fade">
+
+              <div class="modal-dialog" role="document" style="color: black;">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1>SCAN Equipment</h1>
+                  </div>
+                  <div class="modal-body">
+          </form>
+        
+
+          <form role="form" method="POST" action="{%url 'ScanEquip'%}">
+            <input type="hidden" name="_token" value="">
+            <div class="form-group">
               {%csrf_token%}
               <div class="form-group">
-                {% bootstrap_form v_form layout="horizontal" %}
+                {% bootstrap_form formI layout="horizontal" %}
+                <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#ModalLoginForm"
+                  style="margin-right: 20px;" onclick="confs()">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
-              <button class="btn btn-info" type="submit" onclick="conf()">Save</button>
-              <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#ModalLoginForm"
-              style="margin-right: 20px;">Scan Equipment</button>
-              <!-- Modal HTML Markup -->
+            </div>
+          </form>
 
-              <div id="ModalLoginForm" class="modal fade">
-
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                    </div>
-                    <div class="modal-body">
-            </form>
-            <h1>Do you have Equipoment?</h1>
-
-            <form role="form" method="POST" action="{%url 'ScanEquip'%}">
-              <input type="hidden" name="_token" value="">
-              <div class="form-group">
-                {%csrf_token%}
-                <div class="form-group">
-                  {% bootstrap_form Eq_form layout="horizontal" %}
-                  <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#ModalLoginForm"
-                    style="margin-right: 20px;" onclick="conf()">Save</button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </form>
-          </div>
         </div>
-      </div><!-- /.modal-content -->
+      </div>
+    </div><!-- /.modal-content -->
 
-  </form>
 
 
-  <br>
-  </h5>
- 
+
+    <br>
+    </h5>
+
 
 </body>
+<script type="text/javascript">
+
+  function confs() {
+    var coni = confirm("Are sure that equipment is yours??");
+  }; 
+  // var lastChar = function (x) {
+  //   "use strict";
+  //   var a = document.getElementById(x),
+  //     b = a.value;
+  //   a.value = b.substring(21, b.length - 1);
+  // };
+
+  // let data = ''
+
+  // window.onload = function () {
+  //   window.document.body.addEventListener('keydown', function (event) {
+
+  //     data += event.key
+  //     if (event.keyCode == 13 || event.keyCode == 16) {
+  //       event.stopImmediatePropagation();
+  //       return;
+  //     }
+
+  //     else if (event.ctrlKey) {
+  //       event.stopImmediatePropagation();
+  //       return;
+  //     }
+
+  //     else if (data.length < 2) {
+  //       event.preventDefault();
+  //     }
+  //     else {
+  //       console.log("nothing")
+  //     }
+  //     console.log(data.length)
+  //   });
+  // }
+  // $(function () {
+  //   $("#dialog").dialog();
+  // });
+  // $(document).on('submit', "#visitor_form", function (e) {
+  //   e.preventDefault();
+  //   $.ajax({
+  //     type: "POST",
+  //     url: '/add_visitor/',
+  //     data: {
+  //       Idnumber: $('#name').val(),
+  //       csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+
+  //     },
+  //     success: function () {
+  //       alert("saved successful!");
+  //     }
+  //   });
+  // }); -->
+</script> 
 </html>
 {%endblock%}

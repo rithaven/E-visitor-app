@@ -14,7 +14,7 @@
 
   {% block styles %}
   {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/finger.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fingerr.css' %}">
   <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
   {%endblock %}
   <script type="text/javascript">
@@ -55,19 +55,19 @@
     </div>
     <br>
     <div class="card"
-      style="border-radius:20%;width: 600px; padding-left: 40px; padding-right: 40px;padding-top: 40px;padding-bottom: 40px;margin-right: 300px;">
-      <p><strong>Recoded information</strong>
+      style="background-color:rgb(1, 27, 56); border-radius:3%;width: 600px; padding-left: 40px; padding-right: 40px;padding-top: 40px;padding-bottom: 40px;margin-right: 300px;">
+      <p><strong style="color: white; font-size: 20px;">Recoded information</strong>
       <button type="menu"
               style="background-image: url('https://www.kdab.com/wp-content/uploads/stories/kdab_qr.png');background-size:cover;width:  40px;height: 40px;margin-right: 20px;"></button></a>
             </p>
-            <form action="{%url 'fingerPrint'%}" method="post" id="IdNumber">
+            <form action="{%url 'fingerPrint'%}" method="post" id="IdNumber" style="color: white;">
               {%csrf_token%}
               <div class="form-group">
                 {% bootstrap_form finger_form layout="horizontal" %}
               </div>
-              <button class="btn btn-info" type="submit" onclick="conf()">Save</button>
-              <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#ModalLoginForm"
-                style="margin-right: 20px;">Scan Equipment</button>
+              <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#ModalLoginForm">Save</button>
+             
+                
               <!-- Modal HTML Markup -->
     
               <div id="ModalLoginForm" class="modal fade">

@@ -15,7 +15,7 @@
     
 {% block styles %}
 {% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'css/RFID.css' %}">
+<link rel="stylesheet" href="{% static 'css/RRFID.css' %}">
 <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
 {%endblock %}
 <script type="text/javascript">
@@ -44,17 +44,16 @@
 
 <body>
   <div class="container">
-    <p style="color: white;margin-left: 300px;"> RFID SCANNER</p>
+    <p style="color: rgb(3, 3, 3);margin-left: 300px;"> RFID SCANNER</p>
     <div class="card"
-      style="margin-left:250px;border-radius:20%;width: 600px; padding-left: 40px; padding-right: 40px;padding-top: 20px;padding-bottom: 20px;margin-right: 300px;">
-      <form action="{%url 'rfidScan'%}" method="post" id="IdNumber">
+      style="background-color:rgb(1, 27, 56);margin-left:250px;border-radius:3%;width:600px; padding-left: 40px; padding-right: 40px;padding-top: 20px;padding-bottom: 20px;margin-right: 300px;">
+      <form action="{%url 'rfidScan'%}" method="post" id="IdNumber" style="color: white;">
         {%csrf_token%}
         <div class="form-group">
           {% bootstrap_form rf_form layout="horizontal" %}
         </div>
-        <button class="btn btn-info" type="submit" onclick="conf()">Save</button>
-        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#ModalLoginForm"
-          style="margin-right: 20px;">Scan Equipment</button>
+        <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#ModalLoginForm">Save</button>
+ 
         <!-- Modal HTML Markup -->
 
         <div id="ModalLoginForm" class="modal fade">
@@ -67,7 +66,7 @@
       </form>
       <h1>Visitor's Equipment</h1>
 
-      <form role="form" method="POST" action="{%url 'ScanEquip'%}">
+      <form role="form" method="POST" action="{%url 'ScanEquip'%}" style="color: white;">
         <input type="hidden" name="_token" value="">
         <div class="form-group">
           {%csrf_token%}
@@ -81,6 +80,7 @@
       </form>
     </div>
 </div>
+
 </body>
 </html>
 {%endblock%}
