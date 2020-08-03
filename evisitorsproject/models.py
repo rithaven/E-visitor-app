@@ -10,26 +10,27 @@ from django.core.exceptions import ValidationError
 # Create your models here.
 class Idscan(models.Model):
       
-      Id_number=models.CharField(max_length =500,null=True)
+      Id_number=models.CharField(max_length =21,null=True)
+      # Names=models.CharField(max_length=50, null=True)
       date= models.DateTimeField(auto_now_add=True,null=True)
  
       def save_visitor(self):
         self.save()
       
 
-      @classmethod
-      def todays_visitor(cls):
-        today = dt.date.today()
-        visitors = cls.objects.filter(pub_date__date=today)
-        return vistors
+      # @classmethod
+      # def todays_visitor(cls):
+      #   today = dt.date.today()
+      #   visitors = cls.objects.filter(pub_date__date=today)
+      #   return vistors
 
-      @classmethod
-      def search_by_Id(cls,search_term):
-        visitors = cls.objects.filter(Idscan__date__icontains=search_term)
-        return visitors
+      # @classmethod
+      # def search_by_Id(cls,search_term):
+      #   visitors = cls.objects.filter(Idscan__date__icontains=search_term)
+      #   return visitors
 
-      def __str__(self):
-        return str(self. Id_number)
+      # def __str__(self):
+      #   return str(self. Id_number)
 
 class VisitorInfo(models.Model):
       Idnumber=models.CharField(max_length=30,null=True)

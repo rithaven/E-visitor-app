@@ -51,7 +51,7 @@ def add_visitor(request):
             instance=formI.save(commit=False)
             instance.save()
             data={
-                'message':'form is saved'
+                'message':'formI is saved'
             }
             return JsonResponse(data)
     context={
@@ -88,15 +88,15 @@ def edit_visitor(request, id=None):
 
 @login_required(login_url='/accounts/login/')
 def viewReport(request):
-    cou=Idscan.objects.get(id=2)
-    viewReport=Idscan.objects.all().order_by('-date')
-    viewReportE=ScanEquipment.objects.all().order_by('-date')
-    viewReportF=Fingerprint.objects.all().order_by('-date')
-    viewReportG=Rfidscan.objects.all().order_by('-date')
-    viewReportH=Facerecognation.objects.all().order_by('-date')
-    viewReportI=ScanEquipment.objects.all().order_by('-date')
-    viewReportK=Registration.objects.all().order_by('-date')
-    return render (request, 'viewReport.html',{'viewReport':viewReport,'viewReportE':viewReportE,'viewReportF':viewReportF,'viewReportG':viewReportG,'viewReportH':viewReportH,'viewReportH':viewReportH,'viewReportI':viewReportI,'viewReportK':viewReportK,'cou':cou})
+    # cou=Idscan.objects.get(id=2)
+    viewReport=Idscan.objects.all()
+    viewReportE=ScanEquipment.objects.all()
+    viewReportF=Fingerprint.objects.all()
+    viewReportG=Rfidscan.objects.all()
+    viewReportH=Facerecognation.objects.all()
+    viewReportI=ScanEquipment.objects.all()
+    viewReportK=Registration.objects.all()
+    return render (request, 'viewReport.html',{'viewReport':viewReport,'viewReportE':viewReportE,'viewReportF':viewReportF,'viewReportG':viewReportG,'viewReportH':viewReportH,'viewReportH':viewReportH,'viewReportI':viewReportI,'viewReportK':viewReportK})
 
 def searchbar(request):
     # if request.method=='POST':

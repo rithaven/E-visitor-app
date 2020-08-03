@@ -45,7 +45,7 @@
             <!-- <a href="{% url 'ScanEquip'%}"></a> -->
            <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#ModalLoginForm" onclick="conf()"
                 style="margin-left: 450px;"> Save</button>
- 
+              </form>
             <!-- Modal HTML Markup -->
 
             <div id="ModalLoginForm" class="modal fade">
@@ -56,7 +56,7 @@
                     <h1>SCAN Equipment</h1>
                   </div>
                   <div class="modal-body">
-          </form>
+         
         
 
           <form role="form" method="POST" action="{%url 'ScanEquip'%}">
@@ -75,70 +75,14 @@
         </div>
       </div>
     </div><!-- /.modal-content -->
-
-
-
-
     <br>
     </h5>
-
-
 </body>
-<script type="text/javascript">
-
-  function confs() {
-    var coni = confirm("Are sure that equipment is yours??");
-  }; 
-  // var lastChar = function (x) {
-  //   "use strict";
-  //   var a = document.getElementById(x),
-  //     b = a.value;
-  //   a.value = b.substring(21, b.length - 1);
-  // };
-
-  // let data = ''
-
-  // window.onload = function () {
-  //   window.document.body.addEventListener('keydown', function (event) {
-
-  //     data += event.key
-  //     if (event.keyCode == 13 || event.keyCode == 16) {
-  //       event.stopImmediatePropagation();
-  //       return;
-  //     }
-
-  //     else if (event.ctrlKey) {
-  //       event.stopImmediatePropagation();
-  //       return;
-  //     }
-
-  //     else if (data.length < 2) {
-  //       event.preventDefault();
-  //     }
-  //     else {
-  //       console.log("nothing")
-  //     }
-  //     console.log(data.length)
-  //   });
-  // }
-  // $(function () {
-  //   $("#dialog").dialog();
-  // });
-  // $(document).on('submit', "#visitor_form", function (e) {
-  //   e.preventDefault();
-  //   $.ajax({
-  //     type: "POST",
-  //     url: '/add_visitor/',
-  //     data: {
-  //       Idnumber: $('#name').val(),
-  //       csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-
-  //     },
-  //     success: function () {
-  //       alert("saved successful!");
-  //     }
-  //   });
-  // }); -->
-</script> 
+<script>
+  document.addEventListener('keydown', function(event) {
+    if( event.keyCode == 13 || event.keyCode == 17 || event.keyCode == 74 )
+      event.preventDefault();
+  });
+</script>
 </html>
 {%endblock%}

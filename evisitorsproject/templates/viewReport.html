@@ -26,78 +26,84 @@
 <body>
   <h1 class='text-center'
     style="margin-bottom:5%; margin-top: 5px; color: rgb(3, 3, 3);font-family: 'Playfair Display', serif;" id="text">
-    View Report Portal</h1><a href="{%url 'RegisterEqipment'%}"><button style="width: 50px;float:top;">Back</button></a></h1>
+    View Report Portal</h1>
+  </h1>
 
-  <div class="row">
-    <div class="col">
-  
-      <form  method="GET" role="search" action="/searchbar/" style="margin-left: 1000px;">
-       <strong> Search by ID </strong><input type="search" name="srh" placeholder="Search by ID number" style="background:sliva;">
-       </form>
-      <table border="1">
+  <div class="row" style=" display: flex;">
+    <form method="GET" role="search" action="/searchbar/" style="margin-left: 1000px;">
+      <strong> Search by ID </strong><input type="search" name="srh" placeholder="Search by ID number"
+        style="background:sliva;">
+    </form>
+    <div class="column" style="width: 150px;">
+      <table border="2">
         <thead>
-          
-          <tr>
-           
-            <th scope="col" style="width: 100px;">Entries  &  Exits </th>
-            <th scope="col" style="width: 100px;">ID Number</th>
-            <th scope="col" style="width: 100px;" >Names</th>
-            <th scope="col" style="width: 100px;">Destination</th>
-            <th scope="col" style="width: 100px;">Equip.number</th>
-            <th scope="col" style="width: 100px;">Equip.Owner</th>
-            <th scope="col" style="width: 100px;">Equip.name</th>
-            <th scope="col" style="width: 100px;">Phone number</th>
-            <th scope="col" style="width: 100px;">Date</th>
-            <th scope="col" style="width: 100px">Details</th>
 
-          
+          <tr>
+
+            <th scope="col" style="width: 40px;">#number</th>
+            <th scope="col" style="width: 40px;">ID Number</th>
+           
+         
+
           </tr>
         </thead>
+
         <tbody>
           {%for repos in viewReport%}
-          {%for reposi in viewReportE%}
 
           <tr>
             <!-- <td><i class="fa fa-id-badge" aria-hidden="true" style="color: green;">{{cou}}</i></td> -->
-            <td>{{repos.Id_number.id}}</td>
+            <td>{{repos.id}}</td>
             <td>{{repos.Id_number}}</td>
-            <td> {{reposi.Names}}</td>
-            <td>{{reposi.Destination}}</td>
-            <td>{{reposi.EquipNumber}}</td>
-            <td>{{reposi.Owner}}</td>
-            <td>{{reposi.EquipName}}</td>
-            <td>{{reposi.Tel}}</td>
-            <td>{{repos.date}}</td>
-            <td><button type="menu" class="btn btn-primary" data-toggle="modal"
-                data-target="#ModalLoginForm">Details</button></td>
 
-            <div id="ModalLoginForm" class="modal fade">
+ 
+ 
 
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <center><strong> All Details</strong></center>
-                  </div>
-                  <div class="modal-body">
-                    <p> ID Numbe:{{repos.Id_number}}</p>
-                    <p> Names: {{reposi.Names}}</p>
-                    <p> Tel:{{reposi.Tel}}</p>
-                    <p>Destination: {{reposi.Destination}}</p>
-                    <p>Equipment Name:{{reposi.EquipName}}</p>
-                    <p>Date: {{reposi.date}}</p>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Print</button>
-                  </div>
-                </div>
-                </form>
-              </div>
-            </div>
-            {%endfor%}
-            {%endfor%}
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  {%endfor%}
+
+  </tr>
+
+  </tbody>
+  </table>
+  </div>
+  <div class="column" style=" float: left;width: 50%;flex: 50%;" >
+    <table border="2">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 40px;">Names</th>
+          <th scope="col" style="width: 40px;">Destination</th>
+          <th scope="col" style="width: 40px;">Equip.number</th>
+          <th scope="col" style="width: 40px;">Equip.Owner</th>
+          <th scope="col" style="width: 40px;">Equip.name</th>
+          <th scope="col" style="width: 40px;">Phone number</th>
+          <th scope="col" style="width: 40px;">Date</th>
+          <th scope="col" style="width: 40px;">Details</th>
+        </tr>
+      <tbody>
+        {%for reposi in viewReportE%}
+        <tr>
+          <!-- <td><i class="fa fa-id-badge" aria-hidden="true" style="color: green;">{{cou}}</i></td> -->
+
+          <td style="height: 117px;"> {{reposi.Names}}</td>
+          <td>{{reposi.Destination}}</td>
+          <td>{{reposi.EquipNumber}}</td>
+          <td>{{reposi.Owner}}</td>
+          <td>{{reposi.EquipName}}</td>
+          <td>{{reposi.Tel}}</td>
+          <td>{{reposi.date}}</td>
+
+
+          <td><button type="menu" class="btn btn-primary" data-toggle="modal"
+              data-target="#ModalLoginForm">Details</button></td>
+
+  </div>
+  </div>
+  {%endfor%}
+
+  </tbody>
+  </table>
+</div>
+  </div>
 </body>
 
 </html>
