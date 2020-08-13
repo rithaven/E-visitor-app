@@ -165,7 +165,7 @@ class  ScanEquipment(models.Model):
 
 class attendance(models.Model):
           # EquipNumber =models.CharField(max_length=100,null=True,help_text="Scan the  equipment's barcode*")
-          Equip_No=models.CharField(max_length=21,null=True,blank=False,help_text="Scan Equipment's Barcode*")
+          Equip_No=models.CharField(max_length=21,null=True,blank=False)
          
 
           def __str__(self):
