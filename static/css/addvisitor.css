@@ -18,7 +18,7 @@ h5 {
 
   }
   .move{
-    animation:blinkingText 0.8s infinite;
+    animation:blinkingText 0.20s infinite;
   }
   @keyframes blinkingText{
     0%{     color: hsl(209, 89%, 44%);    }
