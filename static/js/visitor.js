@@ -1,33 +1,48 @@
-$(document).ready(function(){
-    var $myForm=$(".my-ajax-form");
-    $myForm.submit(function(event){
-        event.preventDefault();
-        var $formData=$myForm.serialize();
-        $.ajax({
-            method:'POST',
-            data: $formData,
-            success:handleSuccess,
-            error: handleError,
-        });
-        function handleSuccess(data){
-            console.log(data.message);
-            $myForm[0].reset()
-        }
-        function handleError(throwError){
-            console.log(throwError);
-        }
+$(document).ready(function () {
+  var $myForm = $(".my-ajax-form");
+  $myForm.submit(function (event) {
+    event.preventDefault();
+    var $formData = $myForm.serialize();
+    $.ajax({
+      method: 'POST',
+      data: $formData,
+      success: handleSuccess,
+      error: handleError,
     });
-});
-$(document).ready(function(){
-    $(".my-ajax-form").keydown(function(e){
-        if(e.which==17 || e.which==74){
-            e.preventDefault();
-        }else{
-            console.log(e.which);
-        }
-    })
+    function handleSuccess(data) {
+      console.log(data.message);
+      $myForm[0].reset()
+    }
+    function handleError(throwError) {
+      console.log(throwError);
+    }
+  });
 });
 
+$(".my-ajax-forme").change(function () {
+  var username = $(this).val();
+
+  $.ajax({
+    url: '/ajax/validate_Id/',
+    data: {
+      'Id_number': Id_number
+    },
+    dataType: 'json',
+    success: function (data) {
+      if (data.is_taken) {
+        alert("A user with this username already exists.");
+      }
+    }
+  });
+
+});
+
+$(document).ready(function() {
+  $('input[type="checkbox"]').click(function() {
+      var inputValue = $(this).attr("value");
+      $("." + inputValue).toggle();
+  });
+});
 
 // $(".my-ajax-form").on("keypress paste", function(e){
 //     var c = this.selectionStart, v = $(this).val();
@@ -48,7 +63,7 @@ $(document).ready(function(){
 //     }
 //     return false;
 //   }
-  
+
 //   function removeSpecial (text) {
 //     if(text) {
 //       var lower = text.toLowerCase();

@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Idscan,VisitorInfo,Fingerprint,Rfidscan,Facerecognation,Registration,ScanEquipment
+from .models import Idscan,VisitorInfo,attendance,attendanceEquip,Fingerprint,Rfidscan,Facerecognation,Registration,ScanEquipment
 
 
 class idScanForm(ModelForm):
@@ -20,6 +20,14 @@ class ScanEquipmentForm(ModelForm):
             model=ScanEquipment
             fields='__all__'
 
+class attendanceForm(ModelForm):
+      class Meta:
+            model= attendance
+            fields='__all__'
+class attendanceEquipForm(ModelForm):
+      class Meta:
+            model= attendanceEquip
+            fields='__all__'
 class FingerprintForm(ModelForm):
       class Meta:
             model= Fingerprint

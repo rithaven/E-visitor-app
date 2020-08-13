@@ -3,8 +3,8 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect,get_object_or_404
-from .forms import idScanForm,FacerecognationForm,ScanEquipmentForm,FingerprintForm,RfidscanForm,RegistrationForm
-from .models import Idscan,ScanEquipment,Facerecognation,Rfidscan,Fingerprint,Registration
+from .forms import idScanForm,FacerecognationForm,attendanceForm,attendanceEquipForm,ScanEquipmentForm,FingerprintForm,RfidscanForm,RegistrationForm
+from .models import Idscan,ScanEquipment,Facerecognation,attendanceEquip,Rfidscan,Fingerprint,Registration,attendance
 from django.conf import settings
 from . import models
 from django.http import JsonResponse
@@ -38,12 +38,32 @@ def add_visitor(request):
     # handle.close()
     form=idScanForm
     formI=ScanEquipmentForm
+    formB=attendanceForm
+    formC=attendanceEquipForm
     if request.is_ajax():
         form=idScanForm(request.POST)
         formI=ScanEquipmentForm(request.POST)
+        formB=attendanceForm(request.POST)
+        formC=attendanceEquipForm(request.POST)
         if form.is_valid():
             instance=form.save(commit=False)
+            if Idscan.objects.filter(Id_number=request.POST['Id_number']).exists():
+               messages.info(request, 'recorded data already exists in system!')
+               return HttpResponseRedirect('/add_visitor/'+Id_number)
             instance.save()
+           
+            data={
+                'message':'form is saved'
+            }
+        if formB.is_valid():
+            instance=formB.save(commit=False)
+            instance.save() 
+            data={
+                'message':'form is saved'
+            }
+        if formC.is_valid():
+            instance=formC.save(commit=False)
+            instance.save() 
             data={
                 'message':'form is saved'
             }
@@ -55,7 +75,7 @@ def add_visitor(request):
             }
             return JsonResponse(data)
     context={
-    'form':form,'formI':formI
+    'form':form,'formI':formI,'formB':formB,'formC':formC
     }
     return  render(request,'add_visitor.html',context)
 
@@ -77,15 +97,57 @@ def add_visitor(request):
     
     # return  render(request,'add_visitor.html',{'v_form':v_form,'Eq_form':Eq_form})
     # return JsonResponse(data) 
-     
-def edit_visitor(request, id=None):
-    item= get_object_or_404(Idscan,id=id)
-    form=idScanForm(request.GET or None, instance=item) 
-    if form.is_valid():
-       form.save()
-       return redirect('/viewReport/' +str(item.id)+'/')
-    return  render(request,'add_visitor.html',{'form':form})
+# def check(request):
+#     if request.method == "POST":
+#         form = idScanForm(request.POST)
+#         if form.is_valid():
+#             Id_number = form.cleaned_data("Id_number ")
+#             try:
+#                  friend = Idscan.objects.get(Id_number=Id_number)
+#                  return render(request,"add_visitor.html",
+#                        {"friend":friend})
+#             except Idscan.DoesNotExist:
+#                 return render(request, "add_visitor.html", {"form":form})
+def edit_visitor(request, Id_number):
+    item= get_object_or_404(Idscan,id=edit_visitor)
+    # form=idScanForm(request.GET or None, instance=item) 
+    if request.method =='POST':
+        form=idScanForm(request.POST,instance=item)
+        if form.is_valid():
+           form.save()
+        return HttpResponseRedirect("/viewReport")
+    else:
+        form=idScanForm(instance=item)
+    context= {'form':form,'edit_mode':True}
+    return  render(request,'add_visitor.html',context)
+def validate_Id(request):
+    Visitor_Id= request.GET.get('Id_number', None)
+    data = {
+        'is_taken': User.objects.filter(Id_number__iexact=Visitor_Id).exists()
+    }
+    if data['is_taken']:
+        data['error_message'] = 'A user with this ID card number already exists.'
+    return JsonResponse(data)  
+# def visitor_delete(request, Id_number):
+ 
+#     # dictionary for initial data with  
+#     # field names as keys 
+#     context ={} 
+  
+#     # fetch the object related to passed id 
+#     obj = get_object_or_404(Idscan, id = Id_number) 
+  
+  
+#     if request.method =="POST": 
+#         # delete object 
+#         obj.delete() 
+#         # after deleting redirect to  
+#         # home page 
+#         return HttpResponseRedirect("/viewReport") 
+  
+#     return render(request, "viewReport.html", context) 
 
+    
 @login_required(login_url='/accounts/login/')
 def viewReport(request):
     # cou=Idscan.objects.get(id=2)
@@ -97,26 +159,41 @@ def viewReport(request):
     viewReportI=ScanEquipment.objects.all()
     viewReportK=Registration.objects.all()
     return render (request, 'viewReport.html',{'viewReport':viewReport,'viewReportE':viewReportE,'viewReportF':viewReportF,'viewReportG':viewReportG,'viewReportH':viewReportH,'viewReportH':viewReportH,'viewReportI':viewReportI,'viewReportK':viewReportK})
+@login_required(login_url='/accounts/login/')
+def Attend(request):
+    # cou=Idscan.objects.get(id=2)
+    visita=Idscan.objects.all()
+    visitaE=ScanEquipment.objects.all()
+    visitaF=attendanceEquip.objects.all()
+    visitaG=attendance.objects.all()
+    
+    return render (request, 'visitors.html',{'visita':visita,'visitaE':visitaE,'visitaF':visitaF,'visitaG':visitaG})
 
+def visitor_delete(request, id):
+    workout = get_object_or_404(Idsca, id= Id_number)
+    print(workout)
+    if request.user != workout.created_by:
+        return HttpResponse('Not ur workout')
+    else:
+        workout.delete()
+        return HttpResponseRedirect('/viewReport')
 def searchbar(request):
-    # if request.method=='POST':
-    #     srch=request.POST['srh']
-    #     if srch:
-    #         match:Idscan.objects.filter(Q(Id_number__icontains=srch)| Q(Names__icontains=srch))
-    #         if match:
-    #             return render(request,'search.html',{'sr':match})
-    #         else:
-    #             messages.error(request,'no result found')
-    #     else:
-    #         return HttpResponseRedirect('searchbar')
-    # return render(request,'search.html')
+        '''
+        a function to search visitor based on their categories.
+        '''
 
-    if request.method=='GET':
-        search=request.GET.get('search')
-        post1=Idscan.objects.all().filter(Id_number=search).order_by('-date')
-        post2=ScanEquipment.objects.all().filter(date=search).order_by('-date')
-    return render(request,'search.html',{'post1':post1})
-          
+        visitors = Idscan.objects.all()
+        if 'Id_number' in request.GET and request.GET['Id_number']:
+                visitor_item = request.GET.get('Id_number')
+                searched_visitor = Image.search_by_visitor(visitor_item)
+                message = f"{visitor_item}"
+
+                return render(request, 'search.html', {"visitorrr":searched_visitor,"message":message, "visitors":visitors})
+
+        else:
+                message = "You have'nt search for any term"
+        return render(request, 'search.html', {"message": message})
+            
 
    
 

@@ -17,14 +17,15 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views
 from django.contrib.auth import views as auth_views
-from evisitorsproject.views import add_visitor
+from evisitorsproject.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'',include('evisitorsproject.urls')),
     url(r'^viewreport/$',add_visitor),
-    # url(r'^search/$',search),
+    url(r'^searchbar/$',searchbar),
     url(r'^accounts/',include('registration.backends.simple.urls')),
+    # url(r'^add_visitor/(?P<>\d+)/delete$','evisitorsproject.views.visitor_delete', name='visitor_delete'),
     #  url(r'delete_visitor/<int:id>/delete/',visitor_delete_view, name='viewReport'),
     # url(r'^add_visitor/(?P<id>\d+)/delete$',evisitorsproject.views.delete_visitor, name='delete_visitor'),
     url(r'^login/$',auth_views.login, name='login'),
