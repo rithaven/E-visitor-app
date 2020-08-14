@@ -21,7 +21,7 @@ import time
 
 continue_reading = True
 # Create your views here.
-
+@login_required(login_url='/accounts/login/')
 def welcome(request):
 
     return render(request,'welcome.html')
