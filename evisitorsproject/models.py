@@ -10,7 +10,7 @@ from django.core.exceptions import ValidationError
 # Create your models here.
 class Idscan(models.Model):
       
-      Id_number=models.CharField(max_length =21,null=True,blank=False,help_text="Scan the  ID card*")
+      ID_card_No=models.CharField(max_length =21,null=True,blank=False,help_text="Scan the  ID card*")
       # Names=models.CharField(max_length=50, null=True,blank=False,help_text="Names must much*")
       date= models.DateTimeField(auto_now_add=True,null=True,blank=False,)
  
@@ -165,7 +165,8 @@ class  ScanEquipment(models.Model):
 
 class attendance(models.Model):
           # EquipNumber =models.CharField(max_length=100,null=True,help_text="Scan the  equipment's barcode*")
-          Equip_No=models.CharField(max_length=21,null=True,blank=False)
+          Equip_No=models.CharField(max_length=21,null=True,blank=False,help_text="Scan Equipment*")
+          Equip_Name=models.CharField(max_length=21,null=True,blank=False,help_text="Provide  equipment name*")
          
 
           def __str__(self):

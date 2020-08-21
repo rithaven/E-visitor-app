@@ -44,6 +44,7 @@ $(document).ready(function() {
   });
 });
 
+
 // $(".my-ajax-form").on("keypress paste", function(e){
 //     var c = this.selectionStart, v = $(this).val();
 //     if (e.type == "keypress")

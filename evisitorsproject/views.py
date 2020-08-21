@@ -121,9 +121,9 @@ def edit_visitor(request, Id_number):
     context= {'form':form,'edit_mode':True}
     return  render(request,'add_visitor.html',context)
 def validate_Id(request):
-    Visitor_Id= request.GET.get('Id_number', None)
+    Visitor_Id= request.GET.get('ID_card_No', None)
     data = {
-        'is_taken': User.objects.filter(Id_number__iexact=Visitor_Id).exists()
+        'is_taken': User.objects.filter(ID_card_No__iexact=Visitor_Id).exists()
     }
     if data['is_taken']:
         data['error_message'] = 'A user with this ID card number already exists.'
@@ -170,7 +170,7 @@ def Attend(request):
     return render (request, 'visitors.html',{'visita':visita,'visitaE':visitaE,'visitaF':visitaF,'visitaG':visitaG})
 
 def visitor_delete(request, id):
-    workout = get_object_or_404(Idsca, id= Id_number)
+    workout = get_object_or_404(Idsca, id= ID_card_No)
     print(workout)
     if request.user != workout.created_by:
         return HttpResponse('Not ur workout')
@@ -183,8 +183,8 @@ def searchbar(request):
         '''
 
         visitors = Idscan.objects.all()
-        if 'Id_number' in request.GET and request.GET['Id_number']:
-                visitor_item = request.GET.get('Id_number')
+        if 'ID_card_Nor' in request.GET and request.GET['ID_card_No']:
+                visitor_item = request.GET.get('ID_card_No')
                 searched_visitor = Image.search_by_visitor(visitor_item)
                 message = f"{visitor_item}"
 

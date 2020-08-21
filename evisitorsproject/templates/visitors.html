@@ -61,7 +61,7 @@
           <tr>
             <!-- <td><i class="fa fa-id-badge" aria-hidden="true" style="color: green;">{{cou}}</i></td> -->
             <td style="height: 117px;background-color:  rgb(133, 133, 138);">{{repos.id}}</td>
-            <td style="width: 300px;background-color:  rgb(133, 133, 138);">{{repos.Id_number}}</td>
+            <td style="width: 300px;background-color:  rgb(133, 133, 138);">{{repos.ID_card_No}}</td>
            
  
  
@@ -92,6 +92,30 @@
           <td style="background-color:  rgb(133, 133, 138);">{{reposi.Names}}</td>
           <td style="background-color:  rgb(133, 133, 138);">{{reposi.Tel}}</td>
           <td style="background-color:  rgb(133, 133, 138);">{{reposi.date}}</td>
+
+
+          <td style=" background-color:  rgb(133, 133, 138);"><button type="menu" class="btn btn-primary" data-toggle="modal"
+              data-target="#ModalLoginForm" style="background-color: cornflowerblue;">Details</button></td>
+  </div>
+  </div>
+  {%endfor%}
+
+  </tbody>
+  </table>
+  <div class="column" style=" float: left;width: 50%;flex: 50%;" >
+    <table border="2">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 40px;background-color:  rgb(47, 47, 49); color: cornsilk;">Equip. no</th>
+          
+        </tr>
+      <tbody>
+        {%for reposi in visitaF%}
+        <tr>
+          <!-- <td><i class="fa fa-id-badge" aria-hidden="true" style="color: green;">{{cou}}</i></td> -->
+
+          <td style="height: 117px;background-color:  rgb(133, 133, 138);"> {{reposi.Equip_No}}</td>
+      
 
 
           <td style=" background-color:  rgb(133, 133, 138);"><button type="menu" class="btn btn-primary" data-toggle="modal"

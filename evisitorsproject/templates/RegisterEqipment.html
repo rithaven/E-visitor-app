@@ -13,8 +13,19 @@
   {% block styles %}
   {% bootstrap_css %}
   <link rel="stylesheet" href="{% static 'css/registorr.css' %}">
-  <link rel="icon" type="image/png" href="{% static 'images/logo.png'%}">
+  <link rel="icon" type="image/png" href="{% static 'images/mmm.png'%}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   {%endblock %}
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myLinks");
+      if (x.style.display === "block") {
+        x.style.display = "none";
+      } else {
+        x.style.display = "block";
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -38,16 +49,16 @@
             {% endif%}
           </div><br>
           <br>
-          <div style="background-color: rgb(3, 50, 68); padding-top: 3px;padding-bottom: 3px;">
+          <div style="background-color: rgb(78, 167, 202); padding-top: 3px;padding-bottom: 3px;">
             <hr>
-            <h3 style="color: rgb(218, 214, 214);">Welcome to Admin Dashboard</h4>
+            <h3 style="color: white;"><i><img src="../../static/images/mmm.png" style="width: 50px;height: 50px;">WELCOME TO E-VISITORS SYSTEM ADMIN DASHBOARD</i></h4>
               <hr>
           </div>
           <div class="row">
             <div class="col"
-              style="height: 390px; background-color: rgb(5, 84, 116);border:23px;margin-left: 15px;width: 71px;margin-right: 69px;">
+              style="height: 390px; background-color: rgb(81, 147, 173);border:23px;margin-left: 15px;width: 71px;margin-right: 69px;">
               <br>
-              <h8 style="color: white;"> E.V.S</h8>
+              <h8 style=" color: white;"> E.V.S</h8>
               <center>
                 <hr style="width: 20px;background-color: white;">
               </center>
@@ -78,8 +89,11 @@
               <h5 style="color: rgb(7, 57, 90);">SYSTEM</h5>
               <hr>
               <br>
-              <a href="{%url 'Attend'%}"> <button type="button" class="btn btn-default"
-                  style="width: 250px;height: 200px;color: white; background-color: rgb(5, 152, 197);">VISITORS</button></a>
+              <a href="{%url 'fingerPrint'%}"><button type="button" class="btn btn-primary"
+                  style="font-size: 15px;background-color: rgb(233, 236, 236);color: rgb(8, 8, 8);height: 70px;width: 200px;">USER
+                  INTERFACE</button></a><br><br><br><br><br>
+              <a href="{%url 'fingerPrint'%}"><button type="button" class="btn btn-primary"
+                  style="background-color: rgb(233, 236, 236);color: rgb(8, 8, 8);height: 70px;width: 200px;">OTHER USER</button>
             </div>
             <div class="col">
               <br>
@@ -87,33 +101,63 @@
               <hr>
               <br>
               <a href="{%url 'fingerPrint'%}"><button type="button" class="btn btn-primary"
-                  style="width: 250px;height: 200px;background-color: rgb(4, 121, 156);color: rgb(248, 244, 244);">USERS</button></a>
+                  style="background-color: rgb(233, 236, 236);color: rgb(8, 8, 8);height: 70px;width: 200px;">ADMINISTRATOR</button></a><br><br><br><br><br>
+              <a href="{%url 'fingerPrint'%}"><button type="button" class="btn btn-primary"
+                  style="background-color: rgb(233, 236, 236);color: rgb(8, 8, 8);height: 70px;width: 200px;">SUPER USER</button>
             </div>
-            <div class="col">
-              <br>
-              <h5 style="color: rgb(7, 57, 90);">Admin settings </h5>
-              <div style="float: right;">
-                <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button"
-                  aria-expanded="false"></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li style=" padding-left:5px">
-                    <p style="color: rgb(1, 19, 19);">Delete User</p>
-                    <p style="color: rgb(1, 19, 19);">Add User</p>
-                    <p style="color: rgb(1, 19, 19);">Change password</p>
-                  </li>
-                </ul>
-                </li>
-                </ul>
+            <br>
+            <br>
+            <div class=" col mobile-container">
+
+              <!-- Top Navigation Menu -->
+              <div class="topnav" style="margin-top:  23px;margin-left: 30px;">
+                <a href="" class="active" style="text-decoration: none;color: #000;"> SETTINGS</a>
+                <div id="myLinks" style="display: none;">
+                  <a href="#news">News</a><br>
+                  <a href="#contact">Contact</a><br>
+                  <a href="#about">About</a>
+                </div>
+                <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                  <i class="fa fa-bars"></i>
+                </a>
               </div>
+
               <hr>
               <br>
-              <a href=""><button type="button" class="btn btn-primary"
-                  style="width: 250px;height: 200px;background-color: rgb(6, 83, 114);color: rgb(248, 245, 245);">REPORTS</button></a>
+
             </div>
-            <div class="col" style="height: 390px;background-color: rgb(5, 84, 116);margin-right: 15px;margin-left: 100px;">
+            <div class="col"
+              style="height: 390px;background-color: rgb(54, 126, 155);margin-right: 15px;margin-left: 100px;">
+              <br>
+              <h8 style=" color: white;"> E.V.S</h8>
+              <center>
+                <hr style="width: 20px;background-color: white;">
+              </center>
+              <h9 style="color: white;">Users</h9><br>
+              <center>
+                <hr style="width: 20px; background-color: white;">
+              </center>
+              <h9 style="color: white;">Visitors</h9><br>
+              <center>
+                <hr style="width: 20px;background-color: white;">
+              </center>
+              <h9 style="color: white;">Report</h9><br>
+              <center>
+                <hr style="width: 20px;background-color: white;">
+              </center>
+              <h9 style="color: white;">Users</h9><br>
+              <center>
+                <hr style="width: 20px;background-color: white;">
+              </center>
+              <h9 style="color: white;">Visitors</h9><br>
+              <center>
+                <hr style="width: 20px;background-color: white;">
+              </center>
+              <h9 style="color: white;">Report</h9><br>
             </div>
           </div>
         </div>
 </body>
+
 </html>
 {%endblock%}
