@@ -45,7 +45,7 @@
         <thead>
 
           <tr>
-
+            <th scope="col" style="width: 20px;background-color:  rgb(47, 47, 49); color: cornsilk;">Delete</th>
             <th scope="col" style="width: 20px;background-color:  rgb(47, 47, 49); color: cornsilk;">#</th>
             <th scope="col" style="width: 100px;background-color:  rgb(47, 47, 49); color: cornsilk;">ID Number</th>
             
@@ -60,6 +60,7 @@
 
           <tr>
             <!-- <td><i class="fa fa-id-badge" aria-hidden="true" style="color: green;">{{cou}}</i></td> -->
+            <!-- <a href="{% url 'DeleteVisitor' repos.id %}" class="btn btn-danger" role="button">Delete</a> -->
             <td style="height: 117px;background-color:  rgb(133, 133, 138);">{{repos.id}}</td>
             <td style="width: 300px;background-color:  rgb(133, 133, 138);">{{repos.ID_card_No}}</td>
            
@@ -85,6 +86,7 @@
         </tr>
       <tbody>
         {%for reposi in visitaE%}
+        
         <tr>
           <!-- <td><i class="fa fa-id-badge" aria-hidden="true" style="color: green;">{{cou}}</i></td> -->
 
@@ -93,9 +95,31 @@
           <td style="background-color:  rgb(133, 133, 138);">{{reposi.Tel}}</td>
           <td style="background-color:  rgb(133, 133, 138);">{{reposi.date}}</td>
 
-
+        
           <td style=" background-color:  rgb(133, 133, 138);"><button type="menu" class="btn btn-primary" data-toggle="modal"
               data-target="#ModalLoginForm" style="background-color: cornflowerblue;">Details</button></td>
+              <div id="ModalLoginForm" class="modal fade">
+
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <center><strong> All Details</strong></center>
+                    </div>
+                    <div class="modal-body">
+                      <p>Visitor number: {{reposi.id}}</p>
+                      <p> ID Numbe:{{reposi.ID_card_No}}</p>
+                      <p> Names: {{reposi.Names}}</p>
+                      <p> Tel:{{reposi.Tel}}</p>
+                     
+                      
+                      <p>Date: {{reposi.date}}</p>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button"onclick="window.print()" class="btn btn-primary" data-dismiss="modal">Print</button>
+                    </div>
+                  </div>
+                  </form>
+                </div>
+              </div>
   </div>
   </div>
   {%endfor%}

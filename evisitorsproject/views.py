@@ -11,6 +11,9 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView,ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # from imutils.video import VideoStream
 # from pyzbar import pyzbar
 import argparse
@@ -128,55 +131,33 @@ def validate_Id(request):
     if data['is_taken']:
         data['error_message'] = 'A user with this ID card number already exists.'
     return JsonResponse(data)  
-# def visitor_delete(request, Id_number):
- 
-#     # dictionary for initial data with  
-#     # field names as keys 
-#     context ={} 
-  
-#     # fetch the object related to passed id 
-#     obj = get_object_or_404(Idscan, id = Id_number) 
-  
-  
-#     if request.method =="POST": 
-#         # delete object 
-#         obj.delete() 
-#         # after deleting redirect to  
-#         # home page 
-#         return HttpResponseRedirect("/viewReport") 
-  
-#     return render(request, "viewReport.html", context) 
+
+class DeleteVisitor(DeleteView):
+        model = Idscan
+        success_url = reverse_lazy('DeleteVisitor')
 
     
 @login_required(login_url='/accounts/login/')
 def viewReport(request):
     # cou=Idscan.objects.get(id=2)
-    viewReport=Idscan.objects.all()
-    viewReportE=ScanEquipment.objects.all()
-    viewReportF=Fingerprint.objects.all()
-    viewReportG=Rfidscan.objects.all()
-    viewReportH=Facerecognation.objects.all()
-    viewReportI=ScanEquipment.objects.all()
-    viewReportK=Registration.objects.all()
+    viewReport=Idscan.objects.all().order_by('date')
+    viewReportE=ScanEquipment.objects.all().order_by('date')
+    viewReportF=Fingerprint.objects.all().order_by('date')
+    viewReportG=Rfidscan.objects.all().order_by('date')
+    viewReportH=Facerecognation.objects.all().order_by('date')
+    viewReportI=ScanEquipment.objects.all().order_by('date')
+    viewReportK=Registration.objects.all().order_by('date')
     return render (request, 'viewReport.html',{'viewReport':viewReport,'viewReportE':viewReportE,'viewReportF':viewReportF,'viewReportG':viewReportG,'viewReportH':viewReportH,'viewReportH':viewReportH,'viewReportI':viewReportI,'viewReportK':viewReportK})
 @login_required(login_url='/accounts/login/')
 def Attend(request):
     # cou=Idscan.objects.get(id=2)
-    visita=Idscan.objects.all()
-    visitaE=ScanEquipment.objects.all()
-    visitaF=attendanceEquip.objects.all()
-    visitaG=attendance.objects.all()
+    visita=Idscan.objects.all().order_by('date')
+    visitaE=ScanEquipment.objects.all().order_by('date')
+    visitaF=attendanceEquip.objects.all().order_by('date')
+    visitaG=attendance.objects.all().order_by('date')
     
     return render (request, 'visitors.html',{'visita':visita,'visitaE':visitaE,'visitaF':visitaF,'visitaG':visitaG})
 
-def visitor_delete(request, id):
-    workout = get_object_or_404(Idsca, id= ID_card_No)
-    print(workout)
-    if request.user != workout.created_by:
-        return HttpResponse('Not ur workout')
-    else:
-        workout.delete()
-        return HttpResponseRedirect('/viewReport')
 def searchbar(request):
         '''
         a function to search visitor based on their categories.
@@ -326,6 +307,18 @@ def RegisterEqipment(request):
         form=RegistrationForm()
     
     return  render(request,'RegisterEqipment.html',{'form':form})
+
+
+
+# class UpdateVisitor(UpdateView):
+#     model = Attend
+#     fields = ['ID_card_No','Names', 'Tel']
+#     success_url = reverse_lazy('add_visitor')
+
+# class DeleteVisitor(DeleteView):
+#     model = Idscan
+#     success_url = reverse_lazy('visitors')
+
    
 def change_password(request):
     if request.method == 'POST':

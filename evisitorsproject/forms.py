@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Idscan,VisitorInfo,attendance,attendanceEquip,Fingerprint,Rfidscan,Facerecognation,Registration,ScanEquipment
-
+import datetime
 
 class idScanForm(ModelForm):
       class Meta:
@@ -16,7 +16,8 @@ class FacerecognationForm(ModelForm):
             fields='__all__'
 
 class ScanEquipmentForm(ModelForm):
-       class Meta:
+     
+      class Meta:
             model=ScanEquipment
             fields='__all__'
 

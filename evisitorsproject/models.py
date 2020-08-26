@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 import datetime as dt
 from django import forms
 from django.db import models
+from django.urls import reverse
 from django.core.exceptions import ValidationError
 
 
@@ -17,6 +18,8 @@ class Idscan(models.Model):
       def save_visitor(self):
         self.save()
       
+      # def get_absolute_url(self):
+      #   return reverse('student:student_edit', kwargs={'pk': self.pk})
 
       # @classmethod
       # def todays_visitor(cls):
@@ -28,9 +31,10 @@ class Idscan(models.Model):
       def search_by_visitor(cls,visitor_term):
         visitorrr = cls.objects.filter(Id_number__icontains=visitor_term)
         return visitorrr
-
-      # def __str__(self):
-      #   return str(self. Id_number)
+      
+      def __str__(self):
+        return str(self.ID_card_No)
+ 
 
 class VisitorInfo(models.Model):
       Idnumber=models.CharField(max_length=30,null=True)
@@ -75,7 +79,7 @@ class Fingerprint(models.Model):
         return visitors
 
       def __str__(self):
-        return str(self. Id_number)
+        return str(self.ID_card_No)
 
 class Rfidscan(models.Model):
       RFId_number=models.CharField(null=True,max_length=21)
@@ -110,7 +114,11 @@ class Facerecognation(models.Model):
 
 
       def __str__(self):
-            return self.Id_number
+            return self.ID_card_No
+
+
+   
+
 
 class attendanceEquip(models.Model):
       Laptop ='Laptop'
@@ -126,7 +134,7 @@ class attendanceEquip(models.Model):
       ]
       
       # EquipNumber =models.CharField(max_length=100,null=True,help_text="Scan the  equipment's barcode*")
-      ID_card_No=models.CharField(max_length=21,null=True,blank=False,help_text="Visitor's ID Card number*")
+      ID_card_No=models.ForeignKey(Idscan,on_delete=models.CASCADE, default="",max_length=21,null=True,blank=False,help_text="Visitor's ID Card number*")
       Names=models.CharField(max_length=100,null=True,help_text="Provide the names of owner of Equipment*")
       # EquipName=models.CharField(max_length=20,null=True,choices=equip_CHOICES ,
       #   default=none,help_text="Type of Equipment*")
@@ -135,8 +143,17 @@ class attendanceEquip(models.Model):
       Tel= models.CharField(max_length=30,null=True,blank=False,help_text="Phone number*")
       date= models.DateTimeField(auto_now_add=True,null=True)
 
+      
+      # def save(self, *args, **kwargs):
+      #   self.Names = #The value you'd want to automatically set here#
+      #   super(Idscan, self).save(*args, **kwargs)
+
+      def get_absolute_url(self):
+        return reverse('evisitorsproject:visitor_edit', kwargs={'pk': self.pk})
+
       def __str__(self):
-            return self.Id_number
+            return self.ID_card_No
+
 class  ScanEquipment(models.Model):
       Laptop ='Laptop'
       Tablet='Tablet'
@@ -151,7 +168,7 @@ class  ScanEquipment(models.Model):
       ]
       
       # EquipNumber =models.CharField(max_length=100,null=True,help_text="Scan the  equipment's barcode*")
-      ID_card_No=models.CharField(max_length=21,null=True,blank=False,help_text="Visitor's ID Card number*")
+      ID_card_No=models.ForeignKey(Idscan,on_delete=models.CASCADE, default="",max_length=21,null=True,blank=False,help_text="Visitor's ID Card number*")
       Names=models.CharField(max_length=100,null=True,help_text="Provide the names of owner of Equipment*")
       # EquipName=models.CharField(max_length=20,null=True,choices=equip_CHOICES ,
       #   default=none,help_text="Type of Equipment*")
@@ -161,7 +178,7 @@ class  ScanEquipment(models.Model):
       date= models.DateTimeField(auto_now_add=True,null=True)
 
       def __str__(self):
-            return self.Id_number
+            return self.ID_card_No
 
 class attendance(models.Model):
           # EquipNumber =models.CharField(max_length=100,null=True,help_text="Scan the  equipment's barcode*")
@@ -170,7 +187,7 @@ class attendance(models.Model):
          
 
           def __str__(self):
-                return self.Id_number
+                return self.Equip_No
 
 
 class Registration(models.Model):
@@ -191,5 +208,7 @@ class Registration(models.Model):
       Equip_Name=models.CharField(max_length=30,null=True,blank=False,)
       Tel=models.CharField(max_length=30,null=True,blank=False,)
       date = models.DateTimeField(auto_now_add=True,null=True,blank=False,)
+
+
 
      
