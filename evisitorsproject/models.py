@@ -33,7 +33,8 @@ class Idscan(models.Model):
         return visitorrr
       
       def __str__(self):
-        return str(self.ID_card_No)
+            return self.ID_card_No
+       
  
 
 class VisitorInfo(models.Model):
@@ -79,7 +80,8 @@ class Fingerprint(models.Model):
         return visitors
 
       def __str__(self):
-        return str(self.ID_card_No)
+            return self.ID_card_No
+        
 
 class Rfidscan(models.Model):
       RFId_number=models.CharField(null=True,max_length=21)
@@ -102,8 +104,7 @@ class Rfidscan(models.Model):
         return visitors
 
       def __str__(self):
-        return str(self. Id_number)
-
+            return self.ID_card_No
 class Facerecognation(models.Model):
       
       # face_image=models.ImageField(upload_to ='viewReport/',null=True)
