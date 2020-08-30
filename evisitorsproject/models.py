@@ -10,9 +10,8 @@ from django.core.exceptions import ValidationError
 
 # Create your models here.
 class Idscan(models.Model):
-      
       ID_card_No=models.CharField(max_length =21,null=True,blank=False,help_text="Scan the  ID card*")
-      # Names=models.CharField(max_length=50, null=True,blank=False,help_text="Names must much*")
+      # Names=models.CharField(max_length=50,null=True)
       date= models.DateTimeField(auto_now_add=True,null=True,blank=False,)
  
       def save_visitor(self):
@@ -33,19 +32,17 @@ class Idscan(models.Model):
         return visitorrr
       
       def __str__(self):
-            return self.ID_card_No
+            return str(self.ID_card_No)
+      
+      def __str__(self):
+            return str(self.Names)
        
  
 
 class VisitorInfo(models.Model):
-      Idnumber=models.CharField(max_length=30,null=True)
+      ID_card_No=models.CharField(max_length =21,null=True,blank=False,help_text="Scan the  ID card*")
       FirstName=models.CharField(max_length=30,null=True)
-      LastName=models.CharField(max_length=30,null=True)
-      EntryTime=models.DateField(null=True)
-      ExitTime=models.DateField(null=True)
-      category=models.CharField(max_length=30,null=True)
-      propertycode=models.CharField(max_length=30,null=True)
-      propertyname=models.CharField(max_length=30,null=True)
+      # ID_card_No=models.CharField(max_length =21,null=True,blank=False,help_text="Scan the  ID card*")
 
 class Fingerprint(models.Model):
       StaffRoom='StaffRoom'
@@ -58,7 +55,7 @@ class Fingerprint(models.Model):
         
       ]
       
-      Id_number=models.CharField(max_length=21,null=True)
+      ID_card_No=models.CharField(max_length =21,null=True,blank=False,help_text="Scan the  ID card*")
       Names=models.CharField(max_length=50,null=True)
       Destination=models.CharField(max_length=50,null=True,choices=equip_CHOICES,default=StaffRoom)
       Tel=models.CharField(null=True,max_length=21)
@@ -103,22 +100,18 @@ class Rfidscan(models.Model):
         visitors = cls.objects.filter(Idscan__date__icontains=search_term)
         return visitors
 
-      def __str__(self):
-            return self.ID_card_No
+    
 class Facerecognation(models.Model):
       
       # face_image=models.ImageField(upload_to ='viewReport/',null=True)
-      Id_number=models.CharField(null=True,max_length=21)
+      ID_card_No=models.CharField(null=True,max_length=21)
       Names=models.CharField(max_length=50, null=True)
       Tel=models.CharField(null=True,max_length=21)
       date = models.DateTimeField(auto_now_add=True,null=True)
 
 
       def __str__(self):
-            return self.ID_card_No
-
-
-   
+            return str(self.ID_card_No)
 
 
 class attendanceEquip(models.Model):
@@ -136,6 +129,7 @@ class attendanceEquip(models.Model):
       
       # EquipNumber =models.CharField(max_length=100,null=True,help_text="Scan the  equipment's barcode*")
       ID_card_No=models.ForeignKey(Idscan,on_delete=models.CASCADE, default="",max_length=21,null=True,blank=False,help_text="Visitor's ID Card number*")
+      # ID_card_No=models.CharField(max_length =21,null=True,blank=False,help_text="Scan the  ID card*")
       Names=models.CharField(max_length=100,null=True,help_text="Provide the names of owner of Equipment*")
       # EquipName=models.CharField(max_length=20,null=True,choices=equip_CHOICES ,
       #   default=none,help_text="Type of Equipment*")
@@ -153,7 +147,7 @@ class attendanceEquip(models.Model):
         return reverse('evisitorsproject:visitor_edit', kwargs={'pk': self.pk})
 
       def __str__(self):
-            return self.ID_card_No
+            return str(self.ID_card_No)
 
 class  ScanEquipment(models.Model):
       Laptop ='Laptop'
@@ -170,6 +164,8 @@ class  ScanEquipment(models.Model):
       
       # EquipNumber =models.CharField(max_length=100,null=True,help_text="Scan the  equipment's barcode*")
       ID_card_No=models.ForeignKey(Idscan,on_delete=models.CASCADE, default="",max_length=21,null=True,blank=False,help_text="Visitor's ID Card number*")
+      # ID_card_No=models.CharField(max_length =21,null=True,blank=False,help_text="Scan the  ID card*")
+ 
       Names=models.CharField(max_length=100,null=True,help_text="Provide the names of owner of Equipment*")
       # EquipName=models.CharField(max_length=20,null=True,choices=equip_CHOICES ,
       #   default=none,help_text="Type of Equipment*")
@@ -179,7 +175,7 @@ class  ScanEquipment(models.Model):
       date= models.DateTimeField(auto_now_add=True,null=True)
 
       def __str__(self):
-            return self.ID_card_No
+          return str(self.ID_card_No)
 
 class attendance(models.Model):
           # EquipNumber =models.CharField(max_length=100,null=True,help_text="Scan the  equipment's barcode*")
@@ -188,7 +184,7 @@ class attendance(models.Model):
          
 
           def __str__(self):
-                return self.Equip_No
+              return str(self.ID_card_No)
 
 
 class Registration(models.Model):
